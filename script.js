@@ -1,1 +1,1 @@
-
+function join(){alert("Welcome to eFootball Dreamers! Account creation is coming soon.");}function login(){alert("Login is coming soon.");}
