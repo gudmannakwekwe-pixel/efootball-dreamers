@@ -2,19 +2,73 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="eFootball Dreamers — a community hub for players to connect, compete and share the game.">
 <title>eFootball Dreamers | Play. Connect. Compete.</title>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<header class="nav"><a class="logo" href="#home">⚡ <span>eFootball</span> Dreamers</a><nav><a class="active" href="#home">Home</a><a href="#community">Community</a><a href="#tournaments">Tournaments</a><a href="#marketplace">Marketplace</a></nav><div><button class="ghost" onclick="login()">Login</button><button onclick="join()">Join Now</button></div></header>
+<div class="topbar">🔥 <b>Dreamers Community</b><span>Build your squad. Meet your rivals. Enjoy the game.</span></div>
+<header class="nav">
+<a class="logo" href="#home">⚡ <span>eFootball</span> Dreamers</a>
+<nav id="navLinks"><a class="active" href="#home">Home</a><a href="#community">Community</a><a href="#tournaments">Tournaments</a><a href="#marketplace">Marketplace</a></nav>
+<div class="nav-actions"><button class="ghost" onclick="login()">Login</button><button onclick="join()">Join Now</button><button class="menu" onclick="toggleMenu()">☰</button></div>
+</header>
 <main>
-<section id="home" class="hero"><div class="glow"></div><div class="hero-copy"><p class="eyebrow">THE HOME FOR eFOOTBALL PLAYERS</p><h1>PLAY. <span>CONNECT.</span><br>COMPETE.</h1><p>Meet players, discuss tactics, join tournaments and build your eFootball community.</p><div class="actions"><button onclick="join()">Join the Community</button><a class="outline" href="#community">Explore Community</a></div></div><div class="hero-card"><div class="ball">⚽</div><b>DREAM BIG</b><span>Every match starts with a dream.</span></div></section>
-<section class="stats"><div><b>12K+</b><small>Players</small></div><div><b>280+</b><small>Tournaments</small></div><div><b>36K+</b><small>Community Posts</small></div><div><b>24/7</b><small>Community</small></div></section>
-<section id="community" class="section"><p class="eyebrow">COMMUNITY</p><h2>Find Your People</h2><p class="muted">Talk football, share squads, compare tactics and meet players.</p><div class="grid three"><article><i>💬</i><h3>Chat & Connect</h3><p>Join conversations with players from around the world.</p></article><article><i>🏆</i><h3>Compete</h3><p>Discover community tournaments and friendly matches.</p></article><article><i>👤</i><h3>Your Profile</h3><p>Show your achievements and build your reputation.</p></article></div></section>
-<section id="tournaments" class="section dark"><p class="eyebrow">COMPETE</p><h2>Upcoming Tournaments</h2><div class="grid three"><article class="event"><span>COMING SOON</span><h3>Dreamers Cup</h3><p>Community tournament • Open registration</p><button onclick="alert('Tournament registration is coming soon!')">View Tournament</button></article><article class="event"><span>COMING SOON</span><h3>Weekend League</h3><p>Friendly competitive matches for the community.</p><button onclick="alert('Tournament registration is coming soon!')">View Tournament</button></article><article class="event"><span>COMING SOON</span><h3>Dream Team Challenge</h3><p>Show your squad-building skills.</p><button onclick="alert('Tournament registration is coming soon!')">View Tournament</button></article></div></section>
-<section id="marketplace" class="section"><p class="eyebrow">MARKETPLACE</p><h2>A Place To Trade Safely</h2><p class="muted">Browse permitted eFootball-related listings and connect with other players. Always follow Konami's current rules and applicable laws before any transaction.</p><div class="notice">🛡️ <b>Safety first:</b> Never share passwords, verification codes or payment details with strangers.</div></section>
-<section class="cta"><h2>Ready to become a Dreamer?</h2><p>Join the community and make your next match count.</p><button onclick="join()">Create Your Account</button></section>
+<section id="home" class="hero">
+<div class="glow"></div><div class="hero-copy">
+<p class="eyebrow">THE HOME FOR eFOOTBALL PLAYERS</p>
+<h1>PLAY. <span>CONNECT.</span><br>COMPETE.</h1>
+<p>One place for eFootball players to meet, share tactics, find opponents, enter community events and grow together.</p>
+<div class="actions"><button onclick="join()">Join the Community <span>→</span></button><a class="outline" href="#community">Explore Community</a></div>
+<div class="trust"><span>✓ Free to join</span><span>✓ Community focused</span><span>✓ Safety first</span></div>
+</div>
+<div class="hero-card"><div class="card-badge">DREAMERS</div><div class="ball">⚽</div><b>DREAM BIG</b><span>Every match starts with a dream.</span><div class="card-line"></div><small>PLAY • CONNECT • COMPETE</small></div>
+</section>
+
+<section class="stats"><div><b>12K+</b><small>Players</small></div><div><b>280+</b><small>Events planned</small></div><div><b>36K+</b><small>Community posts</small></div><div><b>24/7</b><small>Community</small></div></section>
+
+<section id="community" class="section">
+<div class="section-head"><div><p class="eyebrow">COMMUNITY</p><h2>Everything eFootball, together.</h2></div><p class="muted">A clean home for discussions, squad ideas, friendly rivalries and community events.</p></div>
+<div class="grid three">
+<article class="feature"><i>💬</i><h3>Community Feed</h3><p>Share match stories, tactics, squad ideas and questions with other Dreamers.</p><a href="#feed">Open feed →</a></article>
+<article class="feature"><i>🏆</i><h3>Compete</h3><p>Find community tournaments and friendly challenges when registration opens.</p><a href="#tournaments">See events →</a></article>
+<article class="feature"><i>⭐</i><h3>Your Reputation</h3><p>Build a profile around fair play, participation and helpful community activity.</p><a href="#profile">View profile →</a></article>
+</div>
+</section>
+
+<section id="feed" class="section dark">
+<div class="section-head"><div><p class="eyebrow">LIVE COMMUNITY</p><h2>What Dreamers are talking about</h2></div><button class="outline-btn" onclick="newPost()">＋ New Post</button></div>
+<div class="feed-grid">
+<article class="post"><div class="post-top"><div class="avatar">JM</div><div><b>JamalM</b><small>• 12 min ago</small></div><span>TACTICS</span></div><h3>What formation are you using this week?</h3><p>Looking for ideas for a balanced possession setup. Drop your favourite formation below.</p><div class="post-actions"><button onclick="react(this)">♡ 18</button><button onclick="alert('Comments are coming soon!')">💬 7</button></div></article>
+<article class="post"><div class="post-top"><div class="avatar purple">DK</div><div><b>DreamKing</b><small>• 34 min ago</small></div><span>COMMUNITY</span></div><h3>Weekend friendly matches?</h3><p>Anyone interested in joining a relaxed community match this weekend?</p><div class="post-actions"><button onclick="react(this)">♡ 24</button><button onclick="alert('Comments are coming soon!')">💬 11</button></div></article>
+<article class="post"><div class="post-top"><div class="avatar orange">FC</div><div><b>FC_Atlas</b><small>• 1 hr ago</small></div><span>HELP</span></div><h3>Share your squad-building tips</h3><p>Let's help newer players understand roles, balance and team chemistry.</p><div class="post-actions"><button onclick="react(this)">♡ 31</button><button onclick="alert('Comments are coming soon!')">💬 15</button></div></article>
+</div>
+</section>
+
+<section id="tournaments" class="section">
+<div class="section-head"><div><p class="eyebrow">COMPETE</p><h2>Upcoming events</h2></div><span class="pill">Registration opening soon</span></div>
+<div class="grid three">
+<article class="event"><div class="event-icon">🏆</div><span>COMMUNITY CUP</span><h3>Dreamers Cup</h3><p>Open community tournament for Dreamers who want competitive matches.</p><button onclick="eventInfo('Dreamers Cup')">View details →</button></article>
+<article class="event"><div class="event-icon">⚡</div><span>WEEKEND</span><h3>Weekend League</h3><p>Friendly competitive matches designed for a fun weekend grind.</p><button onclick="eventInfo('Weekend League')">View details →</button></article>
+<article class="event"><div class="event-icon">🧠</div><span>CHALLENGE</span><h3>Dream Team Challenge</h3><p>Show how you build and explain a squad around a tactical idea.</p><button onclick="eventInfo('Dream Team Challenge')">View details →</button></article>
+</div>
+</section>
+
+<section id="marketplace" class="section dark">
+<div class="section-head"><div><p class="eyebrow">MARKETPLACE</p><h2>Community listings</h2></div><span class="pill safe">🛡 Safety first</span></div>
+<div class="market-grid">
+<div class="market-card"><div class="listing-tag">DEMO LISTING</div><h3>Squad & Tactics Showcase</h3><p>Community members can share squad concepts and tactical setups here.</p><button onclick="alert('Marketplace listings are being built. No payments or account credentials should be shared here.')">View listing</button></div>
+<div class="market-card"><div class="listing-tag">COMING SOON</div><h3>Community Services</h3><p>A future area for permitted, clearly described eFootball-related community services.</p><button onclick="alert('Listings are coming soon.')">Learn more</button></div>
+</div>
+<div class="notice">🛡️ <b>Safety first:</b> Never share passwords, verification codes or payment details with strangers. Before any account or team transfer, check Konami's current Terms of Use and applicable laws; this site does not make a prohibited transfer permitted.</div>
+</section>
+
+<section id="profile" class="section">
+<div class="profile-preview"><div class="avatar big">DR</div><div><p class="eyebrow">PROFILE PREVIEW</p><h2>Your Dreamer identity</h2><p class="muted">Track your activity, events and community reputation from one profile.</p></div><button onclick="join()">Create Profile</button></div>
+</section>
+
+<section class="cta"><p class="eyebrow">YOUR NEXT MATCH STARTS HERE</p><h2>Ready to become a Dreamer?</h2><p>Join the community and make your next match count.</p><button onclick="join()">Create Your Account →</button></section>
 </main>
-<footer><b>⚡ eFootball Dreamers</b><span>PLAY • CONNECT • COMPETE</span><small>© 2026 eFootball Dreamers</small></footer>
+<footer><div><b>⚡ eFootball Dreamers</b><p>PLAY • CONNECT • COMPETE</p></div><div class="footer-links"><a href="#community">Community</a><a href="#tournaments">Tournaments</a><a href="#marketplace">Marketplace</a></div><small>© 2026 eFootball Dreamers • Community project</small></footer>
 <script src="script.js"></script>
 </body></html>
