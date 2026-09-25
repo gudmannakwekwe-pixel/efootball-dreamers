@@ -157,3 +157,15 @@ footer{background:#01050a;border-color:#12304a}
 .top-efootball-logo img{display:block!important;width:48px!important;height:48px!important;object-fit:contain!important;opacity:1!important;visibility:visible!important;filter:brightness(1.5) contrast(1.2) drop-shadow(0 0 10px rgba(0,170,255,.45))!important}
 .top-efootball-logo span{font-size:15px;font-weight:1000;letter-spacing:1.5px;color:#fff}
 @media(max-width:700px){.nav{padding-top:66px!important}.top-efootball-logo{left:12px}.top-efootball-logo img{width:40px!important;height:40px!important}.top-efootball-logo span{font-size:12px}}
+
+/* HEADER CLEANUP — large standalone eFootball mark */
+.topbar{display:none!important}
+.nav{padding-top:96px!important;height:110px!important}
+.top-efootball-logo{top:8px;left:50%;transform:translateX(-50%);padding:4px;border:0;background:transparent;box-shadow:0 0 28px rgba(0,145,255,.18)}
+.top-efootball-logo img{width:82px!important;height:82px!important;min-width:82px;filter:brightness(1.55) contrast(1.25) drop-shadow(0 0 18px rgba(0,170,255,.5))!important}
+.top-efootball-logo span{display:none!important}
+@media(max-width:700px){
+  .nav{padding-top:78px!important;height:92px!important}
+  .top-efootball-logo{top:5px}
+  .top-efootball-logo img{width:68px!important;height:68px!important;min-width:68px}
+}
