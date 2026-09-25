@@ -69,3 +69,15 @@ footer{background:#01050a;border-color:#12304a}
 .goat-card>div,.goat-number{z-index:3}
 .photo-credits{width:100%;margin-top:14px;color:#45596a;font-size:9px;letter-spacing:.5px}
 @media(max-width:1000px){.legend-figure img{opacity:.55}}
+
+
+/* PHOTO STACK FIX — keep the real player photos above the card background */
+.legend-figure:before{z-index:0}
+.legend-figure img{z-index:1}
+.legend-figure:after{z-index:2}
+.legend-figure b,.legend-figure small,.legend-figure span{z-index:3}
+
+.goat-card img{z-index:0}
+.goat-card:before{z-index:1}
+.goat-card:after{z-index:2}
+.goat-card>div,.goat-number{z-index:3}
