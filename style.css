@@ -146,3 +146,7 @@ footer{background:#01050a;border-color:#12304a}
 .fire-stat-grid{grid-template-columns:1fr 1fr}.fire-stat{background:#07121b}.fire-stat b{font-size:23px}.fire-actions button{font-size:9px;letter-spacing:.8px}.fire-leaderboard{grid-template-columns:repeat(4,1fr);padding:0 22px 22px;margin:0;max-width:none}.fire-rank{position:relative;overflow:hidden}.fire-rank.active:after{content:"🔥";position:absolute;right:10px;top:8px;font-size:14px}.efb-brand{margin:0}.efb-brand img{width:30px;height:30px}
 @media(max-width:850px){.match-topbar{grid-template-columns:1fr 1fr}.match-score{grid-column:1/-1;justify-content:center;grid-row:2}.match-grid{grid-template-columns:1fr}.match-main{border-right:0;border-bottom:1px solid #17344b}.fire-leaderboard{grid-template-columns:1fr 1fr}}
 @media(max-width:500px){.match-topbar{grid-template-columns:1fr}.match-meta{text-align:left}.match-title{align-items:start;flex-direction:column}.fire-stage{min-height:390px}.fire-leaderboard{grid-template-columns:1fr}.match-score strong{font-size:22px}}
+
+/* eFootball logo visibility fix */
+.efb-brand img{display:block!important;width:42px!important;height:42px!important;min-width:42px;object-fit:contain!important;opacity:1!important;filter:brightness(1.35) contrast(1.15) drop-shadow(0 0 12px rgba(50,170,255,.3))!important}
+.hero-mark img{width:52px;height:52px;object-fit:contain;display:block;filter:brightness(1.3) drop-shadow(0 0 14px rgba(50,170,255,.28));margin-bottom:7px}
