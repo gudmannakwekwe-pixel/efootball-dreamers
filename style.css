@@ -197,3 +197,62 @@ footer{background:#01050a;border-color:#12304a}
 @keyframes logoFirePulse{0%,100%{transform:scale(.97);filter:brightness(1.55) contrast(1.2) drop-shadow(0 0 9px #ff4d00) drop-shadow(0 0 25px #ff8a00) drop-shadow(0 0 45px rgba(255,60,0,.6))}50%{transform:scale(1.04);filter:brightness(1.8) contrast(1.3) drop-shadow(0 0 15px #ff3d00) drop-shadow(0 0 35px #ff9d00) drop-shadow(0 0 70px rgba(255,60,0,.9))}}
 @keyframes flameFloat{0%,100%{transform:translateY(3px) scale(.94) rotate(-3deg);opacity:.8}50%{transform:translateY(-8px) scale(1.08) rotate(3deg);opacity:1}}
 @media(max-width:600px){.goat-intro{min-height:170px}.flame-logo-wrap{height:115px}.giant-ef-logo{height:90px;width:72vw}.flame{font-size:40px}.flame-b,.flame-d{font-size:32px}}
+
+
+/* BLUE + RED STRIPED eFOOTBALL FLAME LOGO */
+.flame-logo-wrap{filter:drop-shadow(0 0 22px rgba(0,120,255,.25))}
+.giant-ef-logo{
+  filter:brightness(1.55) saturate(1.35) hue-rotate(165deg) contrast(1.25)
+    drop-shadow(0 0 10px #087cff)
+    drop-shadow(0 0 28px rgba(0,119,255,.8))
+    drop-shadow(0 0 52px rgba(255,35,45,.45));
+}
+.flame-logo-wrap:after{
+  content:"";
+  position:absolute;
+  z-index:4;
+  width:min(390px,62vw);
+  height:120px;
+  left:50%;
+  top:50%;
+  transform:translate(-50%,-50%) rotate(-4deg);
+  pointer-events:none;
+  background:repeating-linear-gradient(
+    115deg,
+    rgba(255,30,45,.0) 0 20px,
+    rgba(255,30,45,.92) 20px 31px,
+    rgba(255,30,45,.0) 31px 48px
+  );
+  -webkit-mask-image:url("https://commons.wikimedia.org/wiki/Special:FilePath/EFootball_logo.svg");
+  mask-image:url("https://commons.wikimedia.org/wiki/Special:FilePath/EFootball_logo.svg");
+  -webkit-mask-repeat:no-repeat;
+  mask-repeat:no-repeat;
+  -webkit-mask-position:center;
+  mask-position:center;
+  -webkit-mask-size:contain;
+  mask-size:contain;
+  mix-blend-mode:screen;
+  opacity:.9;
+}
+.flame-a,.flame-b,.flame-c,.flame-d{
+  filter:drop-shadow(0 0 10px #087cff) drop-shadow(0 0 24px #ff2638);
+}
+@keyframes logoFirePulse{
+  0%,100%{
+    transform:scale(.97);
+    filter:brightness(1.45) saturate(1.3) hue-rotate(165deg) contrast(1.2)
+      drop-shadow(0 0 9px #087cff)
+      drop-shadow(0 0 24px #087cff)
+      drop-shadow(0 0 42px rgba(255,35,45,.55))
+  }
+  50%{
+    transform:scale(1.04);
+    filter:brightness(1.75) saturate(1.45) hue-rotate(165deg) contrast(1.3)
+      drop-shadow(0 0 15px #087cff)
+      drop-shadow(0 0 34px #ff2638)
+      drop-shadow(0 0 68px rgba(0,130,255,.85))
+  }
+}
+@media(max-width:600px){
+  .flame-logo-wrap:after{height:90px;width:72vw}
+}
