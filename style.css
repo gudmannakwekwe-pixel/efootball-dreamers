@@ -150,3 +150,10 @@ footer{background:#01050a;border-color:#12304a}
 /* eFootball logo visibility fix */
 .efb-brand img{display:block!important;width:42px!important;height:42px!important;min-width:42px;object-fit:contain!important;opacity:1!important;filter:brightness(1.35) contrast(1.15) drop-shadow(0 0 12px rgba(50,170,255,.3))!important}
 .hero-mark img{width:52px;height:52px;object-fit:contain;display:block;filter:brightness(1.3) drop-shadow(0 0 14px rgba(50,170,255,.28));margin-bottom:7px}
+
+/* Fixed top eFootball logo */
+.nav{position:relative!important;padding-top:74px!important}
+.top-efootball-logo{position:absolute;top:12px;left:22px;display:flex;align-items:center;gap:10px;z-index:20;padding:7px 13px;border:1px solid #2b6387;border-radius:10px;background:rgba(2,10,17,.96);box-shadow:0 0 22px rgba(0,145,255,.18)}
+.top-efootball-logo img{display:block!important;width:48px!important;height:48px!important;object-fit:contain!important;opacity:1!important;visibility:visible!important;filter:brightness(1.5) contrast(1.2) drop-shadow(0 0 10px rgba(0,170,255,.45))!important}
+.top-efootball-logo span{font-size:15px;font-weight:1000;letter-spacing:1.5px;color:#fff}
+@media(max-width:700px){.nav{padding-top:66px!important}.top-efootball-logo{left:12px}.top-efootball-logo img{width:40px!important;height:40px!important}.top-efootball-logo span{font-size:12px}}
