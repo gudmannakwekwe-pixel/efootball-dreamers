@@ -33,6 +33,7 @@ function fireEvent(type){
  if(type==="save")p.saves++;
  if(type==="block")p.blocks++;
  if(type==="tackle")p.tackles++;
+ fireIndex=firePlayers.map((x,i)=>({i,s:fireScoreFor(x)})).sort((a,b)=>b.s-a.s)[0].i;
  renderFire();
 }
 document.addEventListener("DOMContentLoaded",renderFire);
