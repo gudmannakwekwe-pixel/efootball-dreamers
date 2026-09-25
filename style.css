@@ -57,3 +57,15 @@ footer{background:#01050a;border-color:#12304a}
 @keyframes heroSweep{0%{transform:translateX(-15%)}100%{transform:translateX(15%)}}@keyframes orbFloat{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-28px) scale(1.08)}}@keyframes streakMove{0%{transform:translateX(-20%) rotate(-18deg)}100%{transform:translateX(150%) rotate(-18deg)}}
 @media(max-width:1000px){.legend-figure{opacity:.3}.figure-mid-left,.figure-mid-right{display:none}.hero-copy{max-width:700px}}
 @media(max-width:600px){.topbar{gap:7px;font-size:7px}.topbar span:last-child{display:none}.hero{min-height:620px;padding-top:90px}.hero-mark{top:60px}.legend-figure{display:none}.hero h1{font-size:48px}.stats{grid-template-columns:repeat(2,1fr);margin-inline:6%}}
+
+/* REAL PLAYER PHOTOGRAPHY */
+.legend-figure img{position:absolute;inset:8% 8% 0;width:84%;height:74%;object-fit:cover;object-position:center top;opacity:.9;mix-blend-mode:screen;filter:saturate(.82) contrast(1.08);mask-image:linear-gradient(to bottom,transparent 0%,#000 18%,#000 70%,transparent 100%);-webkit-mask-image:linear-gradient(to bottom,transparent 0%,#000 18%,#000 70%,transparent 100%)}
+.legend-figure:after{z-index:1;background:radial-gradient(circle at 50% 35%,rgba(255,255,255,.04),transparent 28%),linear-gradient(180deg,transparent 20%,rgba(0,4,9,.08) 55%,rgba(0,4,9,.78) 100%);width:100%;height:100%;left:0;top:0;border-radius:0}
+.legend-figure b,.legend-figure small{z-index:3}
+.goat-card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top;opacity:.72;filter:saturate(.78) contrast(1.1);transition:transform .6s,opacity .35s,filter .35s}
+.goat-card:hover img{transform:scale(1.07);opacity:.9;filter:saturate(1) contrast(1.08)}
+.goat-card:before{z-index:1;background:linear-gradient(180deg,rgba(0,0,0,.02) 15%,rgba(0,0,0,.22) 40%,rgba(0,0,0,.94) 92%)}
+.goat-card:after{z-index:2}
+.goat-card>div,.goat-number{z-index:3}
+.photo-credits{width:100%;margin-top:14px;color:#45596a;font-size:9px;letter-spacing:.5px}
+@media(max-width:1000px){.legend-figure img{opacity:.55}}
