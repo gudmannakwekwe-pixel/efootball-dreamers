@@ -120,3 +120,9 @@ footer{background:#01050a;border-color:#12304a}
 @keyframes firePulse{0%,100%{transform:translate(-50%,-50%) scale(.9);opacity:.65}50%{transform:translate(-50%,-50%) scale(1.12);opacity:1}}
 @media(max-width:800px){.fire-layout{grid-template-columns:1fr}.fire-stage{min-height:390px}.fire-leaderboard{grid-template-columns:1fr 1fr}}
 @media(max-width:500px){.fire-player-info h3{font-size:34px}.fire-score span{font-size:46px}.fire-leaderboard{grid-template-columns:1fr}}
+
+/* eFOOTBALL BRAND MARK */
+.efb-brand{display:inline-flex;align-items:center;gap:10px;margin-bottom:14px;padding:8px 12px;border:1px solid #1d4058;border-radius:12px;background:rgba(4,12,20,.72);width:max-content}
+.efb-brand img{width:34px;height:34px;object-fit:contain;filter:brightness(1.15) drop-shadow(0 0 10px rgba(60,180,255,.22))}
+.efb-brand span{font-size:12px;font-weight:900;line-height:.9;letter-spacing:1px;color:#eef8ff}
+.efb-brand small{font-size:7px;color:#6f8ba0;letter-spacing:1.5px}
