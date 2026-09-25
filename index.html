@@ -65,7 +65,27 @@
     <div class="fire-leaderboard" id="fireLeaderboard"></div>
   </div>
 </section>
-<section class="stats"><div class="stats-inner"><div><b>12K+</b><small>Players</small></div><div><b>280+</b><small>Events planned</small></div><div><b>36K+</b><small>Community posts</small></div><div><b>24/7</b><small>Community</small></div></div></section>
+
+<section id="submit-match" class="section match-submit-section">
+  <div class="section-head"><div><p class="eyebrow">MATCH RESULTS</p><h2>Submit a Match</h2></div><span class="pill">Step 1 • Real community data</span></div>
+  <div class="submit-card">
+    <div class="submit-intro"><b>Finished an eFootball match?</b><p>Enter the result below. For now, Dreamers saves it in this browser. Later, we’ll connect this to a real online database.</p></div>
+    <form id="matchForm" onsubmit="submitMatch(event)" class="match-form">
+      <label>Your player name<input id="playerName" required maxlength="30" placeholder="e.g. Dreamer99"></label>
+      <label>Opponent name<input id="opponentName" required maxlength="30" placeholder="e.g. RivalKing"></label>
+      <label>Your score<input id="yourScore" type="number" min="0" max="99" required value="2"></label>
+      <label>Opponent score<input id="opponentScore" type="number" min="0" max="99" required value="1"></label>
+      <label>Goals<input id="goals" type="number" min="0" max="20" required value="2"></label>
+      <label>Assists<input id="assists" type="number" min="0" max="20" required value="1"></label>
+      <label>Tackles<input id="tackles" type="number" min="0" max="50" required value="5"></label>
+      <label>Saves<input id="saves" type="number" min="0" max="30" required value="0"></label>
+      <button type="submit">Save Match Result →</button>
+    </form>
+    <p id="matchSaved" class="match-saved" aria-live="polite"></p>
+  </div>
+  <div id="submittedMatches" class="submitted-matches"></div>
+</section>
+\n<section class="stats"><div class="stats-inner"><div><b>12K+</b><small>Players</small></div><div><b>280+</b><small>Events planned</small></div><div><b>36K+</b><small>Community posts</small></div><div><b>24/7</b><small>Community</small></div></div></section>
 
 <section id="community" class="section">
 <div class="section-head"><div><p class="eyebrow">COMMUNITY</p><h2>Everything eFootball, together.</h2></div><p class="muted">A clean home for discussions, squad ideas, friendly rivalries and community events.</p></div>
