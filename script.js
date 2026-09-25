@@ -34,3 +34,20 @@ function fireEvent(type){
  fireIndex=firePlayers.map((x,i)=>({i,s:fireScoreFor(x)})).sort((a,b)=>b.s-a.s)[0].i;renderFire();const ev=document.getElementById("matchEvent");if(ev)ev.textContent=eventText;
 }
 document.addEventListener("DOMContentLoaded",()=>{renderFire();setInterval(matchClock,1000);});
+
+
+/* REAL MATCH RESULT DEMO — browser storage for step 1 */
+function getSubmittedMatches(){try{return JSON.parse(localStorage.getItem("dreamersMatches")||"[]")}catch(e){return[]}}
+function saveSubmittedMatches(list){localStorage.setItem("dreamersMatches",JSON.stringify(list))}
+function submitMatch(e){
+ e.preventDefault();
+ const match={player:document.getElementById("playerName").value.trim(),opponent:document.getElementById("opponentName").value.trim(),yourScore:Number(document.getElementById("yourScore").value),opponentScore:Number(document.getElementById("opponentScore").value),goals:Number(document.getElementById("goals").value),assists:Number(document.getElementById("assists").value),tackles:Number(document.getElementById("tackles").value),saves:Number(document.getElementById("saves").value),date:new Date().toLocaleString()};
+ const list=getSubmittedMatches();list.unshift(match);saveSubmittedMatches(list.slice(0,20));
+ document.getElementById("matchSaved").textContent="✓ Match saved on this device. Next we’ll connect it to the Players on Fire system.";e.target.reset();document.getElementById("yourScore").value=2;document.getElementById("opponentScore").value=1;document.getElementById("goals").value=2;document.getElementById("assists").value=1;document.getElementById("tackles").value=5;document.getElementById("saves").value=0;renderSubmittedMatches();
+}
+function renderSubmittedMatches(){
+ const box=document.getElementById("submittedMatches");if(!box)return;const list=getSubmittedMatches();
+ box.innerHTML=list.length?list.map(m=>'<div class="submitted-match"><span><strong>'+escapeHtml(m.player)+'</strong> vs '+escapeHtml(m.opponent)+' <small>• '+escapeHtml(m.date)+'</small></span><b>'+m.yourScore+' — '+m.opponentScore+'</b><span>'+m.goals+' G • '+m.assists+' A • '+m.tackles+' T • '+m.saves+' S</span></div>').join(""):'<div class="submitted-match"><span>No submitted matches yet.</span></div>';
+}
+function escapeHtml(v){return String(v).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]))}
+document.addEventListener("DOMContentLoaded",renderSubmittedMatches);
