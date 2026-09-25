@@ -81,3 +81,42 @@ footer{background:#01050a;border-color:#12304a}
 .goat-card:before{z-index:1}
 .goat-card:after{z-index:2}
 .goat-card>div,.goat-number{z-index:3}
+
+
+/* PLAYERS ON FIRE */
+.on-fire-section{position:relative;overflow:hidden;background:radial-gradient(circle at 50% 25%,rgba(255,95,0,.12),transparent 34%),#02070d}
+.on-fire-section:before{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(115deg,transparent 0 25%,rgba(255,86,0,.04) 45%,transparent 65%),radial-gradient(circle at 50% 75%,rgba(255,170,0,.06),transparent 30%)}
+.fire-head,.fire-layout,.fire-leaderboard{position:relative;z-index:2}
+.fire-head h2{font-size:clamp(30px,4vw,54px);letter-spacing:-2px}
+.fire-pill{border-color:#75411f;color:#ff9b45;background:rgba(92,35,8,.28)}
+.fire-layout{display:grid;grid-template-columns:minmax(320px,1.05fr) minmax(300px,.95fr);gap:20px;max-width:1100px;margin:auto}
+.fire-stage{position:relative;min-height:430px;overflow:hidden;border:1px solid #59301d;border-radius:20px;background:radial-gradient(circle at 50% 28%,rgba(255,124,35,.22),transparent 30%),linear-gradient(145deg,#17100c,#05080d 65%);box-shadow:0 25px 70px rgba(0,0,0,.45)}
+.fire-stage:before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 35%,rgba(2,5,9,.92) 88%);z-index:1}
+.fire-burst{position:absolute;width:260px;height:260px;left:50%;top:25%;transform:translate(-50%,-50%);border-radius:50%;background:radial-gradient(circle,rgba(255,201,65,.35),rgba(255,68,0,.08) 45%,transparent 70%);filter:blur(5px);animation:firePulse 1.8s ease-in-out infinite}
+.fire-stage>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top;opacity:.76;filter:saturate(.9) contrast(1.12)}
+.fire-label{position:absolute;top:20px;left:20px;z-index:4;padding:8px 12px;border:1px solid #9a4a1d;border-radius:999px;background:rgba(34,10,3,.72);color:#ffb25b;font-size:10px;font-weight:900;letter-spacing:1.8px}
+.fire-score{position:absolute;right:22px;top:18px;z-index:4;text-align:right}
+.fire-score span{display:block;font-size:58px;line-height:.8;font-weight:1000;font-style:italic;color:#ffad45;text-shadow:0 0 24px rgba(255,91,0,.35)}
+.fire-score small{font-size:8px;letter-spacing:1.6px;color:#d58b5a}
+.fire-player-info{position:absolute;left:24px;bottom:24px;z-index:4}
+.fire-player-info small{color:#ff9c51;font-size:9px;letter-spacing:2px;font-weight:900}
+.fire-player-info h3{margin:4px 0;font-size:44px;letter-spacing:-2px}
+.fire-player-info p{margin:0;color:#bdc9d4;font-size:10px;letter-spacing:1px}
+.fire-panel{border:1px solid #18364d;border-radius:20px;padding:22px;background:linear-gradient(145deg,#091624,#04090f);box-shadow:0 25px 70px rgba(0,0,0,.3)}
+.fire-panel-top{display:flex;justify-content:space-between;gap:15px;align-items:center;margin-bottom:18px}
+.fire-panel-top b{font-size:12px;letter-spacing:1.4px}.fire-panel-top span{font-size:10px;color:#ff9c51}
+.fire-stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.fire-stat{padding:14px;border:1px solid #16364d;border-radius:12px;background:#06111b}
+.fire-stat b{display:block;font-size:25px;color:#eef8ff}.fire-stat span{display:block;margin-top:3px;color:#7690a5;font-size:9px;letter-spacing:1.3px}
+.fire-actions{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:16px}
+.fire-actions button,.fire-cycle{min-height:44px;border:1px solid #254965;border-radius:10px;background:#081725;color:#dbeaf5;font-weight:800;cursor:pointer}
+.fire-actions button:hover,.fire-cycle:hover{border-color:#ff7c2e;box-shadow:0 0 20px rgba(255,91,0,.12)}
+.fire-cycle{width:100%;margin-top:10px}
+.fire-note{margin:14px 0 0;color:#60798e;font-size:9px;line-height:1.6}
+.fire-leaderboard{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;max-width:1100px;margin:18px auto 0}
+.fire-rank{padding:13px;border:1px solid #17354b;border-radius:12px;background:#06101a;cursor:pointer;transition:.25s}
+.fire-rank.active{border-color:#ff7c2e;box-shadow:0 0 24px rgba(255,91,0,.1);transform:translateY(-2px)}
+.fire-rank b{font-size:12px}.fire-rank small{display:block;color:#748da1;font-size:8px;margin-top:4px}.fire-rank strong{float:right;color:#ffab50;font-size:18px}
+@keyframes firePulse{0%,100%{transform:translate(-50%,-50%) scale(.9);opacity:.65}50%{transform:translate(-50%,-50%) scale(1.12);opacity:1}}
+@media(max-width:800px){.fire-layout{grid-template-columns:1fr}.fire-stage{min-height:390px}.fire-leaderboard{grid-template-columns:1fr 1fr}}
+@media(max-width:500px){.fire-player-info h3{font-size:34px}.fire-score span{font-size:46px}.fire-leaderboard{grid-template-columns:1fr}}
