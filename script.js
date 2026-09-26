@@ -53,18 +53,32 @@ function escapeHtml(v){return String(v).replace(/[&<>"']/g,c=>({'&':'&amp;','<':
 document.addEventListener("DOMContentLoaded",renderSubmittedMatches);
 
 
-/* TOURNAMENT STANDINGS — starter demo data */
-const tournamentStandings=[
+/* TOURNAMENT STANDINGS — calculated from submitted tournament matches */
+const tournamentSeed=[
 {name:"Dreamer99",p:3,w:3,d:0,l:0,gf:9,ga:2},
 {name:"RivalKing",p:3,w:2,d:0,l:1,gf:7,ga:4},
 {name:"ProGamer",p:3,w:1,d:1,l:1,gf:5,ga:5},
 {name:"AtlasFC",p:3,w:1,d:0,l:2,gf:4,ga:7},
 {name:"SkillMaster",p:3,w:0,d:1,l:2,gf:3,ga:8}
 ];
+function buildTournamentStandings(){
+ const map={};
+ tournamentSeed.forEach(x=>map[x.name]={...x});
+ getSubmittedMatches().forEach(m=>{
+   if(!m.tournament) return;
+   const a=m.player,b=m.opponent;
+   if(!a||!b)return;
+   if(!map[a])map[a]={name:a,p:0,w:0,d:0,l:0,gf:0,ga:0};
+   if(!map[b])map[b]={name:b,p:0,w:0,d:0,l:0,gf:0,ga:0};
+   const A=map[a],B=map[b],as=Number(m.yourScore)||0,bs=Number(m.opponentScore)||0;
+   A.p++;B.p++;A.gf+=as;A.ga+=bs;B.gf+=bs;B.ga+=as;
+   if(as>bs){A.w++;B.l++;}else if(as<bs){B.w++;A.l++;}else{A.d++;B.d++;}
+ });
+ return Object.values(map).map(x=>({...x,gd:x.gf-x.ga,pts:x.w*3+x.d})).sort((a,b)=>b.pts-a.pts||b.gd-a.gd||b.gf-a.gf);
+}
 function renderStandings(){
  const body=document.getElementById("standingsBody");if(!body)return;
- const rows=[...tournamentStandings].map(x=>({...x,gd:x.gf-x.ga,pts:x.w*3+x.d})).sort((a,b)=>b.pts-a.pts||b.gd-a.gd||b.gf-a.gf);
+ const rows=buildTournamentStandings();
  body.innerHTML=rows.map((x,i)=>'<tr><td>'+String(i+1).padStart(2,"0")+'</td><td>'+escapeHtml(x.name)+'</td><td>'+x.p+'</td><td>'+x.w+'</td><td>'+x.d+'</td><td>'+x.l+'</td><td>'+x.gf+'</td><td>'+x.ga+'</td><td>'+((x.gd>0?"+":"")+x.gd)+'</td><td>'+x.pts+'</td></tr>').join("");
- const status=document.getElementById("standingsStatus");if(status)status.textContent="5 players • demo data";
+ const status=document.getElementById("standingsStatus");if(status)status.textContent=rows.length+" players • auto-updated";
 }
-document.addEventListener("DOMContentLoaded",renderStandings);
