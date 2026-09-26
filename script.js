@@ -82,3 +82,13 @@ function renderStandings(){
  body.innerHTML=rows.map((x,i)=>'<tr><td>'+String(i+1).padStart(2,"0")+'</td><td>'+escapeHtml(x.name)+'</td><td>'+x.p+'</td><td>'+x.w+'</td><td>'+x.d+'</td><td>'+x.l+'</td><td>'+x.gf+'</td><td>'+x.ga+'</td><td>'+((x.gd>0?"+":"")+x.gd)+'</td><td>'+x.pts+'</td></tr>').join("");
  const status=document.getElementById("standingsStatus");if(status)status.textContent=rows.length+" players • auto-updated";
 }
+
+
+/* ACCOUNT DEMO — local profile until secure online authentication is connected */
+function getAccount(){try{return JSON.parse(localStorage.getItem("dreamersAccount")||"null")}catch(e){return null}}
+function openAccount(mode){const modal=document.getElementById("accountModal");if(!modal)return;modal.classList.add("open");modal.setAttribute("aria-hidden","false");const title=document.getElementById("accountTitle");const form=document.getElementById("accountForm");const msg=document.getElementById("accountMessage");const account=getAccount();if(mode==="login"&&account){title.textContent="Welcome back, "+account.username;form.style.display="none";msg.textContent="✓ Your Dreamers profile is active on this device."}else{title.textContent="Create your account";form.style.display="block";msg.textContent=account?"You already have a local profile. Create a new one to replace it.":""} }
+function closeAccount(){const modal=document.getElementById("accountModal");if(modal){modal.classList.remove("open");modal.setAttribute("aria-hidden","true")}}
+function createAccount(e){e.preventDefault();const username=document.getElementById("accountUsername").value.trim();const email=document.getElementById("accountEmail").value.trim().toLowerCase();if(!username||!email)return;localStorage.setItem("dreamersAccount",JSON.stringify({username,email,created:new Date().toISOString()}));document.getElementById("accountMessage").textContent="✓ Account created on this device. Welcome to Dreamers, "+username+"!";document.getElementById("accountForm").reset();}
+function join(){openAccount("signup")}
+function login(){openAccount("login")}
+document.addEventListener("keydown",e=>{if(e.key==="Escape")closeAccount()});
