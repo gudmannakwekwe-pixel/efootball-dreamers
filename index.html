@@ -67,19 +67,19 @@
 </section>
 
 <section id="submit-match" class="section match-submit-section">
-  <div class="section-head"><div><p class="eyebrow">MATCH RESULTS</p><h2>Submit a Match</h2></div><span class="pill">Step 1 • Real community data</span></div>
+  <div class="section-head"><div><p class="eyebrow">TOURNAMENT MATCH RESULTS</p><h2>Submit a Tournament Match</h2></div><span class="pill">🏆 Dreamers Cup</span></div>
   <div class="submit-card">
-    <div class="submit-intro"><b>Finished an eFootball match?</b><p>Enter the result below. For now, Dreamers saves it in this browser. Later, we’ll connect this to a real online database.</p></div>
+    <div class="submit-intro"><b>Played your tournament match?</b><p>Choose the players, enter the final score and stats, and the tournament standings will update automatically on this device.</p></div>
     <form id="matchForm" onsubmit="submitMatch(event)" class="match-form">
       <label>Your player name<input id="playerName" required maxlength="30" placeholder="e.g. Dreamer99"></label>
       <label>Opponent name<input id="opponentName" required maxlength="30" placeholder="e.g. RivalKing"></label>
       <label>Your score<input id="yourScore" type="number" min="0" max="99" required value="2"></label>
       <label>Opponent score<input id="opponentScore" type="number" min="0" max="99" required value="1"></label>
-      <label>Goals<input id="goals" type="number" min="0" max="20" required value="2"></label>
-      <label>Assists<input id="assists" type="number" min="0" max="20" required value="1"></label>
-      <label>Tackles<input id="tackles" type="number" min="0" max="50" required value="5"></label>
-      <label>Saves<input id="saves" type="number" min="0" max="30" required value="0"></label>
-      <button type="submit">Save Match Result →</button>
+      <label>Your goals<input id="goals" type="number" min="0" max="20" required value="2"></label>
+      <label>Your assists<input id="assists" type="number" min="0" max="20" required value="1"></label>
+      <label>Your tackles<input id="tackles" type="number" min="0" max="50" required value="5"></label>
+      <label>Your saves<input id="saves" type="number" min="0" max="30" required value="0"></label>
+      <button type="submit">Submit Tournament Result →</button>
     </form>
     <p id="matchSaved" class="match-saved" aria-live="polite"></p>
   </div>
