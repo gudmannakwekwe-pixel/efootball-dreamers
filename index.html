@@ -10,7 +10,7 @@
 
 <header class="nav"><div class="top-efootball-logo"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/EFootball_logo.svg" alt="eFootball logo"></div>
 <a class="logo" href="#home"><strong>ED</strong><span>eFootball</span> Dreamers<small>PLAY • CHAT • TRADE • COMPETE</small></a>
-<nav id="navLinks"><a class="active" href="#home">Home</a><a href="#community">Community</a><a href="#goats">GOATs</a><a href="#on-fire">🔥 On Fire</a><a href="#tournaments">Tournaments</a><a href="#marketplace">Marketplace</a></nav>
+<nav id="navLinks"><a class="active" href="#home">Home</a><a href="#community">Community</a><a href="#goats">GOATs</a><a href="#on-fire">🔥 On Fire</a><a href="#tournaments">Tournaments</a><a href="#standings">Standings</a><a href="#marketplace">Marketplace</a></nav>
 <div class="nav-actions"><button class="ghost" onclick="login()">Login</button><button onclick="join()">Join Now</button><button class="menu" onclick="toggleMenu()">☰</button></div>
 </header>
 <main>
@@ -111,6 +111,15 @@
 <article class="event"><div class="event-icon">🏆</div><span>COMMUNITY CUP</span><h3>Dreamers Cup</h3><p>Open community tournament for Dreamers who want competitive matches.</p><button onclick="eventInfo('Dreamers Cup')">View details →</button></article>
 <article class="event"><div class="event-icon">⚡</div><span>WEEKEND</span><h3>Weekend League</h3><p>Friendly competitive matches designed for a fun weekend grind.</p><button onclick="eventInfo('Weekend League')">View details →</button></article>
 <article class="event"><div class="event-icon">🧠</div><span>CHALLENGE</span><h3>Dream Team Challenge</h3><p>Show how you build and explain a squad around a tactical idea.</p><button onclick="eventInfo('Dream Team Challenge')">View details →</button></article>
+</div>
+</section>
+
+<section id="standings" class="section standings-section">
+<div class="section-head"><div><p class="eyebrow">TOURNAMENT TABLE</p><h2>Dreamers Cup Standings</h2></div><span class="pill">🏆 LIVE TOURNAMENT</span></div>
+<div class="standings-card">
+<div class="standings-top"><div><b>Dreamers Cup</b><small>Official tournament table • 3 points for a win</small></div><span id="standingsStatus">Demo standings</span></div>
+<div class="standings-scroll"><table class="standings-table"><thead><tr><th>#</th><th>Player</th><th>P</th><th>W</th><th>D</th><th>L</th><th>GF</th><th>GA</th><th>GD</th><th>PTS</th></tr></thead><tbody id="standingsBody"></tbody></table></div>
+<p class="standings-note">These are starter demo standings. Later, tournament match results will update this table automatically.</p>
 </div>
 </section>
 
