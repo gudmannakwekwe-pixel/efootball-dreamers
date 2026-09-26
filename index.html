@@ -11,7 +11,7 @@
 <header class="nav"><div class="top-efootball-logo"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/EFootball_logo.svg" alt="eFootball logo"></div>
 <a class="logo" href="#home"><strong>ED</strong><span>eFootball</span> Dreamers<small>PLAY • CHAT • TRADE • COMPETE</small></a>
 <nav id="navLinks"><a class="active" href="#home">Home</a><a href="#community">Community</a><a href="#goats">GOATs</a><a href="#on-fire">🔥 On Fire</a><a href="#tournaments">Tournaments</a><a href="#standings">Standings</a><a href="#marketplace">Marketplace</a></nav>
-<div class="nav-actions"><button class="ghost" onclick="login()">Login</button><button onclick="join()">Join Now</button><button class="menu" onclick="toggleMenu()">☰</button></div>
+<div class="nav-actions"><button class="ghost" onclick="login()">Login</button><button onclick="join()">Create Account</button><button class="menu" onclick="toggleMenu()">☰</button></div>
 </header>
 <main>
 <section id="home" class="hero">
@@ -140,4 +140,21 @@
 </main>
 <footer><div><b>⚡ eFootball Dreamers</b><p>PLAY • CONNECT • COMPETE</p></div><div class="footer-links"><a href="#community">Community</a><a href="#tournaments">Tournaments</a><a href="#marketplace">Marketplace</a></div><small>© 2026 eFootball Dreamers • Community project</small><div class="photo-credits">Player photography: Wikimedia Commons contributors • CC BY-SA where indicated</div></footer>
 <script src="script.js?v=matchscreen2"></script>
+
+<div id="accountModal" class="account-modal" aria-hidden="true">
+  <div class="account-backdrop" onclick="closeAccount()"></div>
+  <div class="account-card" role="dialog" aria-modal="true" aria-labelledby="accountTitle">
+    <button class="account-close" type="button" onclick="closeAccount()">×</button>
+    <p class="eyebrow">eFOOTBALL DREAMERS</p>
+    <h2 id="accountTitle">Create your account</h2>
+    <p class="account-sub">Join the community and build your Dreamers profile.</p>
+    <form id="accountForm" onsubmit="createAccount(event)">
+      <label>Username<input id="accountUsername" required maxlength="24" autocomplete="nickname" placeholder="e.g. Dreamer99"></label>
+      <label>Email<input id="accountEmail" required type="email" autocomplete="email" placeholder="you@example.com"></label>
+      <button type="submit">Create Account →</button>
+    </form>
+    <p id="accountMessage" class="account-message" aria-live="polite"></p>
+    <small class="account-demo-note">Account setup is currently a website demo. No password is collected yet. Real secure accounts will be connected when we add the online database/authentication system.</small>
+  </div>
+</div>
 </body></html>
