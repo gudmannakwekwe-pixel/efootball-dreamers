@@ -51,3 +51,20 @@ function renderSubmittedMatches(){
 }
 function escapeHtml(v){return String(v).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]))}
 document.addEventListener("DOMContentLoaded",renderSubmittedMatches);
+
+
+/* TOURNAMENT STANDINGS — starter demo data */
+const tournamentStandings=[
+{name:"Dreamer99",p:3,w:3,d:0,l:0,gf:9,ga:2},
+{name:"RivalKing",p:3,w:2,d:0,l:1,gf:7,ga:4},
+{name:"ProGamer",p:3,w:1,d:1,l:1,gf:5,ga:5},
+{name:"AtlasFC",p:3,w:1,d:0,l:2,gf:4,ga:7},
+{name:"SkillMaster",p:3,w:0,d:1,l:2,gf:3,ga:8}
+];
+function renderStandings(){
+ const body=document.getElementById("standingsBody");if(!body)return;
+ const rows=[...tournamentStandings].map(x=>({...x,gd:x.gf-x.ga,pts:x.w*3+x.d})).sort((a,b)=>b.pts-a.pts||b.gd-a.gd||b.gf-a.gf);
+ body.innerHTML=rows.map((x,i)=>'<tr><td>'+String(i+1).padStart(2,"0")+'</td><td>'+escapeHtml(x.name)+'</td><td>'+x.p+'</td><td>'+x.w+'</td><td>'+x.d+'</td><td>'+x.l+'</td><td>'+x.gf+'</td><td>'+x.ga+'</td><td>'+((x.gd>0?"+":"")+x.gd)+'</td><td>'+x.pts+'</td></tr>').join("");
+ const status=document.getElementById("standingsStatus");if(status)status.textContent="5 players • demo data";
+}
+document.addEventListener("DOMContentLoaded",renderStandings);
