@@ -256,3 +256,12 @@ footer{background:#01050a;border-color:#12304a}
 @media(max-width:600px){
   .flame-logo-wrap:after{height:90px;width:72vw}
 }
+
+
+/* TOURNAMENT STANDINGS TABLE */
+.standings-section{background:radial-gradient(circle at 50% 10%,rgba(0,130,255,.1),transparent 34%),#02070d}
+.standings-card{max-width:1100px;margin:auto;border:1px solid #173d58;border-radius:18px;overflow:hidden;background:linear-gradient(145deg,#081522,#03080d);box-shadow:0 25px 70px rgba(0,0,0,.35)}
+.standings-top{display:flex;justify-content:space-between;align-items:center;gap:15px;padding:20px 22px;border-bottom:1px solid #17344b;background:linear-gradient(180deg,#081725,#040b12)}
+.standings-top b{display:block;font-size:18px}.standings-top small{display:block;color:#718a9d;font-size:10px;margin-top:2px}.standings-top span{font-size:9px;color:#39b8ff;border:1px solid #20577a;border-radius:999px;padding:7px 10px;letter-spacing:1px;font-weight:900}
+.standings-scroll{overflow-x:auto}.standings-table{width:100%;border-collapse:collapse;min-width:760px}.standings-table th{padding:13px 12px;text-align:center;color:#668298;font-size:8px;letter-spacing:1.4px;background:#06111a;border-bottom:1px solid #17344b}.standings-table th:nth-child(2),.standings-table td:nth-child(2){text-align:left}.standings-table td{padding:14px 12px;text-align:center;border-bottom:1px solid #102b3f;color:#a9bdcc;font-size:11px}.standings-table tbody tr{transition:.2s}.standings-table tbody tr:hover{background:#071522}.standings-table tbody tr:first-child{background:linear-gradient(90deg,rgba(0,142,255,.12),transparent)}.standings-table tbody tr:first-child td{color:#fff}.standings-table td:first-child{font-weight:900;color:#4abaff}.standings-table td:nth-child(2){font-weight:900;color:#eaf5ff}.standings-table td:nth-last-child(1){font-size:15px;font-weight:1000;color:#39b8ff}.standings-note{margin:0;padding:13px 18px;color:#60798e;font-size:9px;border-top:1px solid #17344b}
+@media(max-width:600px){.standings-top{align-items:flex-start;flex-direction:column}.standings-table{min-width:700px}}
