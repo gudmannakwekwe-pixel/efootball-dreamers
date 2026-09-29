@@ -1,4 +1,11 @@
-function join(){alert("Welcome to eFootball Dreamers! Account creation is coming soon.");}function login(){alert("Login is coming soon.");}function eventInfo(name){alert(name+" details and registration are coming soon.");}function react(btn){const n=btn.textContent.match(/\d+/);btn.textContent="♥ "+(n?Number(n[0])+1:1);btn.disabled=true;}function newPost(){alert("Posting will be available when community accounts are connected.");}function toggleMenu(){document.getElementById("navLinks").classList.toggle("open");}
+/* eFootball Dreamers — Supabase connection settings
+   Project URL: https://nvmcgiwdkdlfoethwetr.supabase.co
+   The publishable key will be added after it is copied from Supabase.
+*/
+const SUPABASE_URL="https://nvmcgiwdkdlfoethwetr.supabase.co";
+const SUPABASE_PUBLISHABLE_KEY="";
+
+function join(){alert("Welcome to eFootball Dreamers! Real account creation is being connected.");}function login(){alert("Real login is being connected.");}function eventInfo(name){alert(name+" details and registration are coming soon.");}function react(btn){const n=btn.textContent.match(/\d+/);btn.textContent="♥ "+(n?Number(n[0])+1:1);btn.disabled=true;}function newPost(){alert("Posting will be available when community accounts are connected.");}function toggleMenu(){document.getElementById("navLinks").classList.toggle("open");}
 
 
 const firePlayers=[
@@ -10,85 +17,6 @@ const firePlayers=[
 let fireIndex=0,matchSeconds=4044,homeScore=2,awayScore=1;
 function fireScoreFor(p){return Math.min(99,70+p.goals*6+p.assists*3+p.saves*2+p.blocks*2+p.tackles);}
 function matchClock(){matchSeconds=Math.min(5400,matchSeconds+1);const m=Math.floor(matchSeconds/60),s=matchSeconds%60;const el=document.getElementById("matchMinute");if(el)el.textContent=m+":"+String(s).padStart(2,"0");}
-function renderFire(){
- const p=firePlayers[fireIndex],score=fireScoreFor(p),ranked=firePlayers.map((x,i)=>({x,i,s:fireScoreFor(x)})).sort((a,b)=>b.s-a.s);
- const img=document.getElementById("firePlayerImage");if(img){img.src=p.image;img.alt=p.name}
- const n=document.getElementById("firePlayerName");if(n)n.textContent=p.name;
- const r=document.getElementById("fireRole");if(r)r.textContent=p.role;
- const sc=document.getElementById("fireScore");if(sc)sc.textContent=score;
- const pos=document.getElementById("firePosition");if(pos)pos.textContent="#"+p.number;
- const reason=document.getElementById("fireReason");if(reason)reason.textContent=p.goals+" GOALS • "+p.assists+" ASSISTS • "+p.tackles+" TACKLES";
- const status=document.getElementById("fireStatus");if(status)status.textContent=p.name+" is leading";
- const stats=document.getElementById("fireStats");if(stats)stats.innerHTML='<div class="fire-stat"><b>'+p.goals+'</b><span>⚽ GOALS</span></div><div class="fire-stat"><b>'+p.assists+'</b><span>🎯 ASSISTS</span></div><div class="fire-stat"><b>'+p.saves+'</b><span>🧤 SAVES</span></div><div class="fire-stat"><b>'+p.blocks+'</b><span>🛡 BLOCKS</span></div><div class="fire-stat"><b>'+p.tackles+'</b><span>💪 TACKLES</span></div><div class="fire-stat"><b>'+score+'</b><span>🔥 FORM</span></div>';
- const board=document.getElementById("fireLeaderboard");if(board)board.innerHTML=ranked.map((v,pos)=>'<button type="button" class="fire-rank '+(v.i===fireIndex?'active':'')+'" onclick="selectFirePlayer('+v.i+')"><strong>'+v.s+'</strong><b>#'+(pos+1)+' '+v.x.name+'</b><small>'+v.x.goals+' G • '+v.x.saves+' S • '+v.x.blocks+' B • '+v.x.tackles+' T</small></button>').join("");
- const momentum=Math.max(35,Math.min(85,50+(score-85)*2));const hm=document.getElementById("homeMomentum"),am=document.getElementById("awayMomentum"),fill=document.getElementById("momentumFill");if(hm)hm.textContent=Math.round(momentum)+"%";if(am)am.textContent=Math.round(100-momentum)+"%";if(fill)fill.style.width=momentum+"%";const mt=document.getElementById("momentumText");if(mt)mt.textContent=momentum>=50?"DREAMERS FC":"RIVALS XI";const hs=document.getElementById("homeScore"),as=document.getElementById("awayScore");if(hs)hs.textContent=homeScore;if(as)as.textContent=awayScore;
-}
-function selectFirePlayer(i){fireIndex=i;renderFire()}
-function nextFirePlayer(){fireIndex=(fireIndex+1)%firePlayers.length;renderFire()}
-function fireEvent(type){
- const p=firePlayers[fireIndex];let eventText="";
- if(type==="goal"){p.goals++;homeScore++;eventText=p.name+" scores! ⚽ DREAMERS FC "+homeScore+" — "+awayScore;}
- if(type==="save"){p.saves++;eventText=p.name+" makes a huge save! 🧤";}
- if(type==="block"){p.blocks++;eventText=p.name+" makes the block! 🛡";}
- if(type==="tackle"){p.tackles++;eventText=p.name+" wins the tackle! 💪";}
- fireIndex=firePlayers.map((x,i)=>({i,s:fireScoreFor(x)})).sort((a,b)=>b.s-a.s)[0].i;renderFire();const ev=document.getElementById("matchEvent");if(ev)ev.textContent=eventText;
-}
+function renderFire(){const p=firePlayers[fireIndex],score=fireScoreFor(p),ranked=firePlayers.map((x,i)=>({x,i,s:fireScoreFor(x)})).sort((a,b)=>b.s-a.s);const img=document.getElementById("firePlayerImage");if(img){img.src=p.image;img.alt=p.name}const n=document.getElementById("firePlayerName");if(n)n.textContent=p.name;const r=document.getElementById("fireRole");if(r)r.textContent=p.role;const sc=document.getElementById("fireScore");if(sc)sc.textContent=score;const pos=document.getElementById("firePosition");if(pos)pos.textContent="#"+p.number;const reason=document.getElementById("fireReason");if(reason)reason.textContent=p.goals+" GOALS • "+p.assists+" ASSISTS • "+p.tackles+" TACKLES";const status=document.getElementById("fireStatus");if(status)status.textContent=p.name+" is leading";const stats=document.getElementById("fireStats");if(stats)stats.innerHTML='<div class="fire-stat"><b>'+p.goals+'</b><span>⚽ GOALS</span></div><div class="fire-stat"><b>'+p.assists+'</b><span>🎯 ASSISTS</span></div><div class="fire-stat"><b>'+p.saves+'</b><span>🧤 SAVES</span></div><div class="fire-stat"><b>'+p.blocks+'</b><span>🛡 BLOCKS</span></div><div class="fire-stat"><b>'+p.tackles+'</b><span>💪 TACKLES</span></div><div class="fire-stat"><b>'+score+'</b><span>🔥 FORM</span></div>';const board=document.getElementById("fireLeaderboard");if(board)board.innerHTML=ranked.map((v,pos)=>'<button type="button" class="fire-rank '+(v.i===fireIndex?'active':'')+'" onclick="selectFirePlayer('+v.i+')"><strong>'+v.s+'</strong><b>#'+(pos+1)+' '+v.x.name+'</b><small>'+v.x.goals+' G • '+v.x.saves+' S • '+v.x.blocks+' B • '+v.x.tackles+' T</small></button>').join("");const momentum=Math.max(35,Math.min(85,50+(score-85)*2));const hm=document.getElementById("homeMomentum"),am=document.getElementById("awayMomentum"),fill=document.getElementById("momentumFill");if(hm)hm.textContent=Math.round(momentum)+"%";if(am)am.textContent=Math.round(100-momentum)+"%";if(fill)fill.style.width=momentum+"%";const mt=document.getElementById("momentumText");if(mt)mt.textContent=momentum>=50?"DREAMERS FC":"RIVALS XI";const hs=document.getElementById("homeScore"),as=document.getElementById("awayScore");if(hs)hs.textContent=homeScore;if(as)as.textContent=awayScore;}
+function selectFirePlayer(i){fireIndex=i;renderFire()}function nextFirePlayer(){fireIndex=(fireIndex+1)%firePlayers.length;renderFire()}function fireEvent(type){const p=firePlayers[fireIndex];let eventText="";if(type==="goal"){p.goals++;homeScore++;eventText=p.name+" scores! ⚽ DREAMERS FC "+homeScore+" — "+awayScore}if(type==="save"){p.saves++;eventText=p.name+" makes a huge save! 🧤"}if(type==="block"){p.blocks++;eventText=p.name+" makes the block! 🛡"}if(type==="tackle"){p.tackles++;eventText=p.name+" wins the tackle! 💪"}fireIndex=firePlayers.map((x,i)=>({i,s:fireScoreFor(x)})).sort((a,b)=>b.s-a.s)[0].i;renderFire();const ev=document.getElementById("matchEvent");if(ev)ev.textContent=eventText;}
 document.addEventListener("DOMContentLoaded",()=>{renderFire();setInterval(matchClock,1000);});
-
-
-/* REAL MATCH RESULT DEMO — browser storage for step 1 */
-function getSubmittedMatches(){try{return JSON.parse(localStorage.getItem("dreamersMatches")||"[]")}catch(e){return[]}}
-function saveSubmittedMatches(list){localStorage.setItem("dreamersMatches",JSON.stringify(list))}
-function submitMatch(e){
- e.preventDefault();
- const match={player:document.getElementById("playerName").value.trim(),opponent:document.getElementById("opponentName").value.trim(),yourScore:Number(document.getElementById("yourScore").value),opponentScore:Number(document.getElementById("opponentScore").value),goals:Number(document.getElementById("goals").value),assists:Number(document.getElementById("assists").value),tackles:Number(document.getElementById("tackles").value),saves:Number(document.getElementById("saves").value),date:new Date().toLocaleString()};
- const list=getSubmittedMatches();list.unshift(match);saveSubmittedMatches(list.slice(0,20));
- document.getElementById("matchSaved").textContent="✓ Match saved on this device. Next we’ll connect it to the Players on Fire system.";e.target.reset();document.getElementById("yourScore").value=2;document.getElementById("opponentScore").value=1;document.getElementById("goals").value=2;document.getElementById("assists").value=1;document.getElementById("tackles").value=5;document.getElementById("saves").value=0;renderSubmittedMatches();
-}
-function renderSubmittedMatches(){
- const box=document.getElementById("submittedMatches");if(!box)return;const list=getSubmittedMatches();
- box.innerHTML=list.length?list.map(m=>'<div class="submitted-match"><span><strong>'+escapeHtml(m.player)+'</strong> vs '+escapeHtml(m.opponent)+' <small>• '+escapeHtml(m.date)+'</small></span><b>'+m.yourScore+' — '+m.opponentScore+'</b><span>'+m.goals+' G • '+m.assists+' A • '+m.tackles+' T • '+m.saves+' S</span></div>').join(""):'<div class="submitted-match"><span>No submitted matches yet.</span></div>';
-}
-function escapeHtml(v){return String(v).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]))}
-document.addEventListener("DOMContentLoaded",renderSubmittedMatches);
-
-
-/* TOURNAMENT STANDINGS — calculated from submitted tournament matches */
-const tournamentSeed=[
-{name:"Dreamer99",p:3,w:3,d:0,l:0,gf:9,ga:2},
-{name:"RivalKing",p:3,w:2,d:0,l:1,gf:7,ga:4},
-{name:"ProGamer",p:3,w:1,d:1,l:1,gf:5,ga:5},
-{name:"AtlasFC",p:3,w:1,d:0,l:2,gf:4,ga:7},
-{name:"SkillMaster",p:3,w:0,d:1,l:2,gf:3,ga:8}
-];
-function buildTournamentStandings(){
- const map={};
- tournamentSeed.forEach(x=>map[x.name]={...x});
- getSubmittedMatches().forEach(m=>{
-   if(!m.tournament) return;
-   const a=m.player,b=m.opponent;
-   if(!a||!b)return;
-   if(!map[a])map[a]={name:a,p:0,w:0,d:0,l:0,gf:0,ga:0};
-   if(!map[b])map[b]={name:b,p:0,w:0,d:0,l:0,gf:0,ga:0};
-   const A=map[a],B=map[b],as=Number(m.yourScore)||0,bs=Number(m.opponentScore)||0;
-   A.p++;B.p++;A.gf+=as;A.ga+=bs;B.gf+=bs;B.ga+=as;
-   if(as>bs){A.w++;B.l++;}else if(as<bs){B.w++;A.l++;}else{A.d++;B.d++;}
- });
- return Object.values(map).map(x=>({...x,gd:x.gf-x.ga,pts:x.w*3+x.d})).sort((a,b)=>b.pts-a.pts||b.gd-a.gd||b.gf-a.gf);
-}
-function renderStandings(){
- const body=document.getElementById("standingsBody");if(!body)return;
- const rows=buildTournamentStandings();
- body.innerHTML=rows.map((x,i)=>'<tr><td>'+String(i+1).padStart(2,"0")+'</td><td>'+escapeHtml(x.name)+'</td><td>'+x.p+'</td><td>'+x.w+'</td><td>'+x.d+'</td><td>'+x.l+'</td><td>'+x.gf+'</td><td>'+x.ga+'</td><td>'+((x.gd>0?"+":"")+x.gd)+'</td><td>'+x.pts+'</td></tr>').join("");
- const status=document.getElementById("standingsStatus");if(status)status.textContent=rows.length+" players • auto-updated";
-}
-
-
-/* ACCOUNT DEMO — local profile until secure online authentication is connected */
-function getAccount(){try{return JSON.parse(localStorage.getItem("dreamersAccount")||"null")}catch(e){return null}}
-function openAccount(mode){const modal=document.getElementById("accountModal");if(!modal)return;modal.classList.add("open");modal.setAttribute("aria-hidden","false");const title=document.getElementById("accountTitle");const form=document.getElementById("accountForm");const msg=document.getElementById("accountMessage");const account=getAccount();if(mode==="login"&&account){title.textContent="Welcome back, "+account.username;form.style.display="none";msg.textContent="✓ Your Dreamers profile is active on this device."}else{title.textContent="Create your account";form.style.display="block";msg.textContent=account?"You already have a local profile. Create a new one to replace it.":""} }
-function closeAccount(){const modal=document.getElementById("accountModal");if(modal){modal.classList.remove("open");modal.setAttribute("aria-hidden","true")}}
-function createAccount(e){e.preventDefault();const username=document.getElementById("accountUsername").value.trim();const email=document.getElementById("accountEmail").value.trim().toLowerCase();if(!username||!email)return;localStorage.setItem("dreamersAccount",JSON.stringify({username,email,created:new Date().toISOString()}));document.getElementById("accountMessage").textContent="✓ Account created on this device. Welcome to Dreamers, "+username+"!";document.getElementById("accountForm").reset();}
-function join(){openAccount("signup")}
-function login(){openAccount("login")}
-document.addEventListener("keydown",e=>{if(e.key==="Escape")closeAccount()});
