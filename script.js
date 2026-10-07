@@ -97,3 +97,33 @@ function renderBuildLab(){
 function selectBuildPlayer(i){activeBuildPlayer=i;renderBuildLab()}
 function selectBuildCoach(id){activeCoach=id;renderBuildLab()}
 document.addEventListener("DOMContentLoaded",renderBuildLab);
+
+/* GOD MODE Build Lab controls */
+function godBuildData(){
+ const p=dreamersBuildPlayers[activeBuildPlayer],coach=dreamersCoachPresets.find(x=>x.id===activeCoach)||dreamersCoachPresets[0];
+ const attrs={};["SPD","SHT","PAS","DRB","DEF"].forEach(k=>attrs[k]=buildValue(p.base,k,coach.mult));
+ return {player:p.name,rating:p.rating,position:p.pos,coach:coach.name,style:p.style,attributes:attrs,savedAt:new Date().toISOString()};
+}
+function godBuildStatus(message){
+ const el=document.getElementById("godBuildStatus");if(el){el.textContent=message;clearTimeout(window.godBuildStatusTimer);window.godBuildStatusTimer=setTimeout(()=>el.textContent="",2600)}
+}
+function saveGodBuild(){
+ const data=godBuildData();
+ localStorage.setItem("dreamersGodBuild",JSON.stringify(data));
+ godBuildStatus("✓ BUILD SAVED ON THIS DEVICE");
+}
+async function copyGodBuild(){
+ const d=godBuildData();
+ const text="eFootball Dreamers GOD BUILD\n"+d.player+" • "+d.position+" • "+d.rating+" OVR\nCoach: "+d.coach+"\nSPD "+d.attributes.SPD+" • SHT "+d.attributes.SHT+" • PAS "+d.attributes.PAS+" • DRB "+d.attributes.DRB+" • DEF "+d.attributes.DEF;
+ try{await navigator.clipboard.writeText(text);godBuildStatus("✓ BUILD COPIED TO CLIPBOARD")}catch(e){godBuildStatus("Copy unavailable — use SAVE BUILD")}
+}
+function resetGodBuild(){activeBuildPlayer=0;activeCoach="qc";renderBuildLab();godBuildStatus("↺ BUILD LAB RESET")}
+function loadGodBuild(){
+ try{
+  const d=JSON.parse(localStorage.getItem("dreamersGodBuild")||"null");
+  if(!d)return;
+  const pi=dreamersBuildPlayers.findIndex(p=>p.name===d.player),ci=dreamersCoachPresets.findIndex(x=>x.name===d.coach);
+  if(pi>=0)activeBuildPlayer=pi;if(ci>=0)activeCoach=dreamersCoachPresets[ci].id;renderBuildLab();
+ }catch(e){}
+}
+document.addEventListener("DOMContentLoaded",loadGodBuild);
