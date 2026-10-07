@@ -63,3 +63,37 @@ const featuredDreamersCards=[
 function renderFeaturedCards(){const grid=document.getElementById("featuredCardGrid");if(!grid)return;grid.innerHTML=featuredDreamersCards.map((p,i)=>'<article class="featured-player-card"><div class="card-shine"></div><div class="fc-top"><span>EPIC</span><b>'+p.rating+'</b></div><div class="fc-image-wrap"><img src="'+p.image+'" alt="'+p.name+'" loading="lazy" onerror="this.style.display=\'none\'"><div class="fc-position">'+p.pos+'</div></div><div class="fc-info"><small>'+p.team+' • '+p.style+'</small><h3>'+p.name+'</h3><div class="fc-stats"><span><b>'+p.stats[0]+'</b>SPD</span><span><b>'+p.stats[1]+'</b>SHT</span><span><b>'+p.stats[2]+'</b>PAS</span><span><b>'+p.stats[3]+'</b>DRB</span></div><button type="button" onclick="openDreamersPlayerCard('+i+')">VIEW PLAYER →</button></div></article>').join("")}
 function openDreamersPlayerCard(i){const p=featuredDreamersCards[i];alert(p.name+"\n"+p.pos+" • "+p.style+"\nDreamers demo rating: "+p.rating+"\n\nThis is a Dreamers-designed card, not an official eFootball card.");}
 document.addEventListener("DOMContentLoaded",renderFeaturedCards);
+
+/* Dreamers Build Lab */
+const dreamersBuildPlayers=[
+ {name:"Ruud Gullit",initials:"RG",rating:90,pos:"SS",nation:"🇳🇱 Netherlands",style:"Target Man",attack:94,summary:"A powerful all-round attacker who can link play and finish from central areas.",best:["SS / AMF","Quick Counter","Power + movement","Finishing / Physical / Passing"],base:{SPD:86,SHT:91,PAS:87,DRB:85,DEF:62},tips:"Keep him central, then use his physical strength to create space and finish."},
+ {name:"Edgar Davids",initials:"ED",rating:89,pos:"DMF",nation:"🇳🇱 Netherlands",style:"Box-to-Box",attack:81,summary:"A high-energy midfielder built to press, recover and keep the team moving.",best:["DMF / CMF","Possession Game","Ball recovery","Defending / Passing / Stamina"],base:{SPD:84,SHT:72,PAS:84,DRB:82,DEF:91},tips:"Prioritize defensive work and passing so he can win the ball and immediately restart attacks."},
+ {name:"Lionel Messi",initials:"LM",rating:91,pos:"RWF",nation:"🇦🇷 Argentina",style:"Creative Playmaker",attack:98,summary:"A creative wide attacker who benefits from close control, passing and finishing.",best:["RWF / AMF","Possession Game","Close control","Dribbling / Passing / Shooting"],base:{SPD:88,SHT:91,PAS:97,DRB:99,DEF:42},tips:"Use him between the wing and half-space; let his dribbling and passing create the final action."},
+ {name:"Neymar Jr",initials:"NJ",rating:90,pos:"LWF",nation:"🇧🇷 Brazil",style:"Creative Playmaker",attack:96,summary:"A technical wide creator who thrives when he has freedom to receive and combine.",best:["LWF / AMF","Possession Game","Dribbling","Dribbling / Passing / Shooting"],base:{SPD:91,SHT:87,PAS:94,DRB:98,DEF:38},tips:"Give him the ball early and let him attack isolated defenders before combining centrally."},
+ {name:"Frank Rijkaard",initials:"FR",rating:90,pos:"CB",nation:"🇳🇱 Netherlands",style:"Build Up",attack:70,summary:"A composed defensive anchor suited to structured possession and controlled buildup.",best:["CB / DMF","Possession Game","Defensive positioning","Defending / Passing / Physical"],base:{SPD:78,SHT:54,PAS:86,DRB:63,DEF:96},tips:"Keep him behind the midfield line and use his passing to escape pressure safely."},
+ {name:"Dreamers Finisher",initials:"DF",rating:95,pos:"CF",nation:"🌍 Dreamers",style:"Goal Poacher",attack:99,summary:"A demo profile for testing the Build Lab before more player versions are added.",best:["CF","Quick Counter","Runs in behind","Shooting / Speed / Dribbling"],base:{SPD:96,SHT:98,PAS:78,DRB:91,DEF:30},tips:"Use this demo to test the interface. Replace it with a verified player version when data is available."}
+];
+const dreamersCoachPresets=[
+ {id:"qc",icon:"⚡",name:"Quick Counter",desc:"Fast transitions & runs",score:96,mult:{SPD:3,SHT:3,PAS:-2,DRB:2,DEF:-1},plan:"OFFENSIVE",style:"Quick Counter"},
+ {id:"pos",icon:"🎯",name:"Possession Game",desc:"Control & combinations",score:95,mult:{SPD:-1,SHT:1,PAS:4,DRB:4,DEF:0},plan:"TECHNICAL",style:"Possession Game"},
+ {id:"ow",icon:"↗",name:"Out Wide",desc:"Width & crossing lanes",score:92,mult:{SPD:3,SHT:1,PAS:2,DRB:3,DEF:-1},plan:"WIDE ATTACK",style:"Out Wide"},
+ {id:"lbc",icon:"🛡",name:"Long Ball Counter",desc:"Compact defence & breaks",score:91,mult:{SPD:2,SHT:3,PAS:-1,DRB:0,DEF:4},plan:"COUNTER",style:"Long Ball Counter"}
+];
+let activeBuildPlayer=0,activeCoach="qc";
+function buildValue(base,key,mult){return Math.max(1,Math.min(99,base[key]+(mult[key]||0)))}
+function renderBuildLab(){
+ const list=document.getElementById("buildPlayerList"),grid=document.getElementById("coachPresetGrid");if(!list||!grid)return;
+ list.innerHTML=dreamersBuildPlayers.map((p,i)=>'<button type="button" class="build-player-row '+(i===activeBuildPlayer?'active':'')+'" onclick="selectBuildPlayer('+i+')"><span class="build-avatar">'+p.initials+'</span><span><b>'+p.name+'</b><small>'+p.pos+' • '+p.style+'</small></span><strong class="build-mini-rating">'+p.rating+'</strong></button>').join("");
+ const p=dreamersBuildPlayers[activeBuildPlayer],coach=dreamersCoachPresets.find(x=>x.id===activeCoach)||dreamersCoachPresets[0];
+ document.getElementById("buildRating").textContent=p.rating;document.getElementById("buildPos").textContent=p.pos;document.getElementById("buildInitials").textContent=p.initials;
+ document.getElementById("buildName").textContent=p.name;document.getElementById("buildNation").textContent=p.nation;document.getElementById("buildStyle").textContent=p.style;document.getElementById("buildSummary").textContent=p.summary;
+ document.getElementById("buildAttack").textContent=p.attack;document.getElementById("buildAttackBar").style.width=p.attack+"%";
+ document.getElementById("buildBestPosition").textContent=p.best[0];document.getElementById("buildBestPlaystyle").textContent=coach.style;document.getElementById("buildKeyStrength").textContent=p.best[2];document.getElementById("buildIdea").textContent=p.best[3];
+ document.getElementById("buildPlanLabel").textContent=coach.plan;document.getElementById("buildRoleLabel").textContent=p.pos;document.getElementById("buildTip").textContent=p.tips;
+ grid.innerHTML=dreamersCoachPresets.map(c=>'<button type="button" class="coach-preset '+(c.id===activeCoach?'active':'')+'" onclick="selectBuildCoach(\''+c.id+'\')"><span class="coach-score">'+c.score+'</span><div class="coach-icon">'+c.icon+'</div><b>'+c.name+'</b><small>'+c.desc+'</small></button>').join("");
+ const attrs=["SPD","SHT","PAS","DRB","DEF"],map={SPD:"SPD",SHT:"SHT",PAS:"PAS",DRB:"DRB",DEF:"DEF"};
+ document.getElementById("buildAttributes").innerHTML=attrs.map(k=>{const v=buildValue(p.base,map[k],coach.mult);return '<div class="attr-line"><span>'+k+'</span><div class="attr-track"><i style="width:'+v+'%"></i></div><b>'+v+'</b></div>'}).join("");
+}
+function selectBuildPlayer(i){activeBuildPlayer=i;renderBuildLab()}
+function selectBuildCoach(id){activeCoach=id;renderBuildLab()}
+document.addEventListener("DOMContentLoaded",renderBuildLab);
