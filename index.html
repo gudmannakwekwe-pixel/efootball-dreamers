@@ -67,25 +67,30 @@
 </section>
 
 <section id="submit-match" class="section match-submit-section">
-  <div class="section-head"><div><p class="eyebrow">TOURNAMENT MATCH RESULTS</p><h2>Submit a Tournament Match</h2></div><span class="pill">🏆 Dreamers Cup</span></div>
-  <div class="submit-card">
-    <div class="submit-intro"><b>Played your tournament match?</b><p>Choose the players, enter the final score and stats, and the tournament standings will update automatically on this device.</p></div>
-    <form id="matchForm" onsubmit="submitMatch(event)" class="match-form">
-      <label>Your player name<input id="playerName" required maxlength="30" placeholder="e.g. Dreamer99"></label>
-      <label>Opponent name<input id="opponentName" required maxlength="30" placeholder="e.g. RivalKing"></label>
-      <label>Your score<input id="yourScore" type="number" min="0" max="99" required value="2"></label>
-      <label>Opponent score<input id="opponentScore" type="number" min="0" max="99" required value="1"></label>
-      <label>Your goals<input id="goals" type="number" min="0" max="20" required value="2"></label>
-      <label>Your assists<input id="assists" type="number" min="0" max="20" required value="1"></label>
-      <label>Your tackles<input id="tackles" type="number" min="0" max="50" required value="5"></label>
-      <label>Your saves<input id="saves" type="number" min="0" max="30" required value="0"></label>
-      <button type="submit">Submit Tournament Result →</button>
-    </form>
-    <p id="matchSaved" class="match-saved" aria-live="polite"></p>
-  </div>
-  <div id="submittedMatches" class="submitted-matches"></div>
+<div class="section-head"><div><p class="eyebrow">🏆 DREAMERS CUP • MATCH CENTER</p><h2>Report Your Match</h2></div><span class="pill live-pill">● LIVE TABLE SYNC</span></div>
+<div class="match-report">
+<div class="match-report-head"><div><span class="report-label">FINAL RESULT</span><b id="resultBadge">READY TO REPORT</b></div><div class="report-code">DREAMERS CUP <span>•</span> MATCH REPORT</div></div>
+<form id="matchForm" onsubmit="submitMatch(event)">
+<div class="scoreboard">
+<div class="team-side"><span class="team-icon">D</span><label>Your team<input id="playerName" required maxlength="30" placeholder="Dreamer99"></label></div>
+<div class="score-box"><input id="yourScore" type="number" min="0" max="99" required value="2" aria-label="Your score"><span>—</span><input id="opponentScore" type="number" min="0" max="99" required value="1" aria-label="Opponent score"></div>
+<div class="team-side away"><label>Opponent<input id="opponentName" required maxlength="30" placeholder="RivalKing"></label><span class="team-icon">R</span></div>
+</div>
+<div class="match-divider"><span>MATCH PERFORMANCE</span></div>
+<div class="stat-entry-grid">
+<label>⚽ Goals<input id="goals" type="number" min="0" max="20" required value="2"></label>
+<label>🎯 Assists<input id="assists" type="number" min="0" max="20" required value="1"></label>
+<label>💪 Tackles<input id="tackles" type="number" min="0" max="50" required value="5"></label>
+<label>🧤 Saves<input id="saves" type="number" min="0" max="30" required value="0"></label>
+</div>
+<div class="match-preview"><div><small>YOUR RESULT</small><strong id="liveResult">WIN</strong></div><div class="preview-line"><span id="previewPlayer">Dreamer99</span><b id="previewScore">2 — 1</b><span id="previewOpponent">RivalKing</span></div><div class="rating-preview"><span>PERFORMANCE RATING</span><b id="performanceRating">87</b><i><em id="ratingBar"></em></i></div></div>
+<button class="submit-match-btn" type="submit"><span>Submit Official Result</span><b>→</b></button>
+<p id="matchSaved" class="match-saved" aria-live="polite"></p>
+</form></div>
+<div id="submittedMatches" class="submitted-matches"></div>
 </section>
-\n<section class="stats"><div class="stats-inner"><div><b>12K+</b><small>Players</small></div><div><b>280+</b><small>Events planned</small></div><div><b>36K+</b><small>Community posts</small></div><div><b>24/7</b><small>Community</small></div></div></section>
+
+<section class="stats"><div class="stats-inner"><div><b>12K+</b><small>Players</small></div><div><b>280+</b><small>Events planned</small></div><div><b>36K+</b><small>Community posts</small></div><div><b>24/7</b><small>Community</small></div></div></section>
 
 <section id="community" class="section">
 <div class="section-head"><div><p class="eyebrow">COMMUNITY</p><h2>Everything eFootball, together.</h2></div><p class="muted">A clean home for discussions, squad ideas, friendly rivalries and community events.</p></div>
