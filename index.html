@@ -4,7 +4,7 @@
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="description" content="eFootball Dreamers — PLAY • CHAT • TRADE • COMPETE. A cinematic community hub for eFootball players.">
 <title>eFootball Dreamers | PLAY • CHAT • TRADE • COMPETE</title>
-<link rel="stylesheet" href="style.css?v=godmode-2">
+<link rel="stylesheet" href="style.css?v=godmode-3">
 </head>
 <body>
 
@@ -216,13 +216,19 @@
         <span>✦</span>
         <p><b>Dreamers tip:</b> <span id="buildTip">Use this as a starting point, then adjust progression to your own squad and playstyle.</span></p>
       </div>
+      <div class="god-build-actions">
+        <button type="button" onclick="saveGodBuild()">💾 SAVE BUILD</button>
+        <button type="button" onclick="copyGodBuild()">🔗 COPY BUILD</button>
+        <button type="button" onclick="resetGodBuild()">↺ RESET</button>
+        <span id="godBuildStatus" aria-live="polite"></span>
+      </div>
     </div>
   </div>
   <p class="build-disclaimer">Recommendations are Dreamers suggestions, not official Konami settings. Exact player progression can change with card version, boosters and game updates.</p>
 </section>
 </main>
 <footer><div><b>⚡ eFootball Dreamers</b><p>PLAY • CONNECT • COMPETE</p></div><div class="footer-links"><a href="#community">Community</a><a href="#tournaments">Tournaments</a><a href="#marketplace">Marketplace</a></div><small>© 2026 eFootball Dreamers • Community project</small><div class="photo-credits">Player photography: Wikimedia Commons contributors • CC BY-SA where indicated</div></footer>
-<script src="script.js?v=buildlab-fix-1"></script>
+<script src="script.js?v=godmode-3"></script>
 
 <div id="accountModal" class="account-modal" aria-hidden="true">
   <div class="account-backdrop" onclick="closeAccount()"></div>
