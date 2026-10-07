@@ -4,7 +4,7 @@
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="description" content="eFootball Dreamers — PLAY • CHAT • TRADE • COMPETE. A cinematic community hub for eFootball players.">
 <title>eFootball Dreamers | PLAY • CHAT • TRADE • COMPETE</title>
-<link rel="stylesheet" href="style.css?v=buildlab-fix-1">
+<link rel="stylesheet" href="style.css?v=godmode-2">
 </head>
 <body>
 
@@ -28,6 +28,16 @@
 <div class="trust"><span>✓ Free to join</span><span>✓ Community focused</span><span>✓ Safety first</span></div>
 </div>
 <div class="hero-mark"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/EFootball_logo.svg" alt="eFootball logo"><b>eFootball<br><span>DREAMERS</span></b><small>PLAY • CHAT • TRADE • COMPETE</small></div>
+</section>
+
+<section class="god-launcher" aria-label="Dreamers Build Lab">
+  <div class="god-launcher-glow"></div>
+  <div>
+    <p class="eyebrow">⚡ GOD MODE • DREAMERS BUILD LAB</p>
+    <h2>BUILD YOUR PLAYER LIKE A PRO.</h2>
+    <p>Pick a player, switch the coach and watch the recommended attributes update instantly.</p>
+  </div>
+  <a href="#build-lab" class="god-launcher-btn">OPEN BUILD LAB <span>→</span></a>
 </section>
 
 <section id="player-hub" class="section player-hub-section"><div class="section-head"><div><p class="eyebrow">DREAMERS PLAYER HUB</p><h2>Find your next star.</h2></div><span class="pill">⚡ PLAYER DATABASE</span></div><div class="hub-toolbar"><div class="hub-search"><span>⌕</span><input id="playerSearch" type="search" placeholder="Search player, position or style..." oninput="filterDreamersPlayers()"></div><select id="playerFilter" onchange="filterDreamersPlayers()" aria-label="Filter players"><option value="ALL">All positions</option><option value="CF">CF</option><option value="AMF">AMF</option><option value="CMF">CMF</option><option value="DMF">DMF</option><option value="CB">CB</option><option value="GK">GK</option></select><button class="hub-compare-btn" type="button" onclick="compareDreamersPlayers()">Compare selected</button></div><div id="dreamersPlayerGrid" class="dreamers-player-grid"></div><div id="playerCompare" class="player-compare" hidden></div><p class="hub-note">A Dreamers-built player hub inspired by the useful parts of modern eFootball databases — search, compare and discover.</p></section><section id="invite" class="section invite-section"><div class="invite-card"><div class="invite-copy"><p class="eyebrow">BRING THE SQUAD</p><h2>Invite your Dreamers.</h2><p>Share eFootball Dreamers with your friends and build the community together.</p></div><div class="invite-actions"><button type="button" class="invite-btn whatsapp" onclick="shareDreamers('whatsapp')"><span>◉</span> WhatsApp</button><button type="button" class="invite-btn gmail" onclick="shareDreamers('gmail')"><span>✉</span> Gmail</button><button type="button" class="invite-btn instagram" onclick="shareDreamers('instagram')"><span>◎</span> Instagram</button><button type="button" class="invite-btn twitter" onclick="shareDreamers('twitter')"><span>𝕏</span> X / Twitter</button><button type="button" class="invite-btn telegram" onclick="shareDreamers('telegram')"><span>➤</span> Telegram</button><button type="button" class="invite-btn copy" onclick="shareDreamers('copy')"><span>🔗</span> Copy Link</button></div><p id="inviteStatus" class="invite-status" aria-live="polite"></p></div></section>
