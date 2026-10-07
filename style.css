@@ -107,3 +107,11 @@ body:before{
 .god-launcher-btn:hover{transform:translateY(-3px);box-shadow:0 16px 45px rgba(220,30,30,.4);filter:brightness(1.08)}
 @keyframes godSweep{to{transform:translateX(100%)}}
 @media(max-width:760px){.god-launcher{margin:14px 14px 0;padding:24px;display:block}.god-launcher-btn{display:inline-block;margin-top:18px}}
+
+/* GOD MODE BUILD ACTIONS */
+.god-build-actions{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:16px;padding:14px 0 0;border-top:1px solid rgba(255,255,255,.07)}
+.god-build-actions button{border:1px solid rgba(255,70,60,.28);background:linear-gradient(145deg,#121a22,#070b10);color:#e9f0f4;border-radius:10px;padding:11px 14px;font-size:10px;font-weight:1000;letter-spacing:.8px;cursor:pointer;transition:.2s}
+.god-build-actions button:hover{transform:translateY(-2px);border-color:rgba(255,78,68,.7);box-shadow:0 8px 24px rgba(190,25,25,.18)}
+.god-build-actions button:first-child{background:linear-gradient(135deg,#d9342f,#861413);border-color:#ed4b44}
+#godBuildStatus{min-height:20px;color:#ff655d;font-size:10px;font-weight:900;letter-spacing:.6px}
+@media(max-width:600px){.god-build-actions button{flex:1;min-width:100px}}
