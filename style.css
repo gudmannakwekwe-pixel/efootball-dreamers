@@ -96,3 +96,14 @@ body:before{
 .build-tip{display:flex;gap:12px;align-items:flex-start;margin-top:12px;padding:14px 16px;border-radius:15px}.build-tip>span{font-size:18px;color:#ff6259}.build-tip p{margin:0;color:#85949f;font-size:11px;line-height:1.5}.build-tip b{color:#fff}.build-disclaimer{font-size:10px;color:#687681;text-align:center;margin:13px auto 0;max-width:760px}
 @media(max-width:1000px){.build-lab-shell{grid-template-columns:1fr}.build-player-list{position:static}.build-player-list>div:last-child{display:grid;grid-template-columns:repeat(2,1fr);gap:5px}.coach-preset-grid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:680px){.build-hero-card,.build-detail-grid{grid-template-columns:1fr}.build-player-art{min-height:170px}.build-player-copy h3{font-size:27px}.coach-preset-grid{grid-template-columns:1fr 1fr}.build-main{padding:11px}.build-lab-shell{gap:10px}.build-player-list>div:last-child{grid-template-columns:1fr}.coach-switcher-head{align-items:flex-start;flex-direction:column;gap:8px}}
+
+/* GOD MODE BUILD LAB LAUNCHER */
+.god-launcher{position:relative;overflow:hidden;display:flex;align-items:center;justify-content:space-between;gap:28px;margin:18px auto 0;padding:30px 34px;max-width:1200px;border:1px solid rgba(255,64,55,.35);border-radius:24px;background:radial-gradient(circle at 12% 50%,rgba(210,28,28,.26),transparent 34%),linear-gradient(135deg,#0b1118,#030507 72%);box-shadow:0 0 0 1px rgba(255,255,255,.03),0 22px 80px rgba(0,0,0,.45),0 0 55px rgba(180,20,20,.12)}
+.god-launcher:before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(255,60,50,.08),transparent);transform:translateX(-100%);animation:godSweep 4s linear infinite}
+.god-launcher-glow{position:absolute;width:260px;height:260px;left:-130px;top:-110px;border-radius:50%;background:rgba(230,35,30,.25);filter:blur(50px)}
+.god-launcher h2{margin:4px 0 8px;font-size:clamp(25px,4vw,44px);letter-spacing:-1.5px;color:#fff}
+.god-launcher p:not(.eyebrow){margin:0;color:#9aa8b3;max-width:650px;line-height:1.6}
+.god-launcher-btn{position:relative;z-index:2;flex:none;padding:15px 22px;border-radius:12px;border:1px solid rgba(255,90,80,.6);background:linear-gradient(135deg,#ed4038,#9d1615);color:#fff;text-decoration:none;font-weight:1000;letter-spacing:1px;box-shadow:0 10px 35px rgba(200,25,25,.25);transition:.2s}
+.god-launcher-btn:hover{transform:translateY(-3px);box-shadow:0 16px 45px rgba(220,30,30,.4);filter:brightness(1.08)}
+@keyframes godSweep{to{transform:translateX(100%)}}
+@media(max-width:760px){.god-launcher{margin:14px 14px 0;padding:24px;display:block}.god-launcher-btn{display:inline-block;margin-top:18px}}
