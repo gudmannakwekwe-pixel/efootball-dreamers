@@ -42,13 +42,56 @@ function renderStandings(){const body=document.getElementById("standingsBody");i
 document.addEventListener("DOMContentLoaded",()=>{renderSubmittedMatches();renderStandings();updateMatchPreview();["playerName","opponentName","yourScore","opponentScore","goals","assists","tackles","saves"].forEach(id=>document.getElementById(id)?.addEventListener("input",updateMatchPreview))});
 
 /* Dreamers Player Hub */
-const dreamersPlayers=[{name:"Speed Hunter",nation:"🇫🇷 France",pos:"CF",rating:96,style:"Goal Poacher",pace:98,shoot:94,pass:82,dribble:95,def:42},{name:"Playmaker X",nation:"🇦🇷 Argentina",pos:"AMF",rating:95,style:"Creative Playmaker",pace:88,shoot:86,pass:98,dribble:96,def:48},{name:"Engine Core",nation:"🇪🇸 Spain",pos:"CMF",rating:94,style:"Box-to-Box",pace:89,shoot:78,pass:93,dribble:88,def:86},{name:"Shield One",nation:"🇧🇷 Brazil",pos:"DMF",rating:93,style:"Anchor Man",pace:78,shoot:58,pass:86,dribble:74,def:96},{name:"Wall Master",nation:"🇳🇱 Netherlands",pos:"CB",rating:94,style:"Build Up",pace:82,shoot:42,pass:76,dribble:61,def:98},{name:"Last Line",nation:"🇩🇪 Germany",pos:"GK",rating:92,style:"Defensive GK",pace:64,shoot:20,pass:72,dribble:35,def:97}];
+/* Dreamers Player Hub — stable card system */
+const dreamersPlayers=[
+ {id:"speed-hunter",name:"Speed Hunter",nation:"🇫🇷 France",pos:"CF",rating:96,style:"Goal Poacher",pace:98,shoot:94,pass:82,dribble:95,def:42,tone:"scarlet",mark:"SH"},
+ {id:"playmaker-x",name:"Playmaker X",nation:"🇦🇷 Argentina",pos:"AMF",rating:95,style:"Creative Playmaker",pace:88,shoot:86,pass:98,dribble:96,def:48,tone:"crimson",mark:"PX"},
+ {id:"engine-core",name:"Engine Core",nation:"🇪🇸 Spain",pos:"CMF",rating:94,style:"Box-to-Box",pace:89,shoot:78,pass:93,dribble:88,def:86,tone:"ruby",mark:"EC"},
+ {id:"shield-one",name:"Shield One",nation:"🇧🇷 Brazil",pos:"DMF",rating:93,style:"Anchor Man",pace:78,shoot:58,pass:86,dribble:74,def:96,tone:"ember",mark:"SO"},
+ {id:"wall-master",name:"Wall Master",nation:"🇳🇱 Netherlands",pos:"CB",rating:94,style:"Build Up",pace:82,shoot:42,pass:76,dribble:61,def:98,tone:"darkred",mark:"WM"},
+ {id:"last-line",name:"Last Line",nation:"🇩🇪 Germany",pos:"GK",rating:92,style:"Defensive GK",pace:64,shoot:20,pass:72,dribble:35,def:97,tone:"inferno",mark:"LL"}
+];
 let selectedDreamersPlayers=new Set();
-function renderDreamersPlayers(list=dreamersPlayers){const grid=document.getElementById("dreamersPlayerGrid");if(!grid)return;grid.innerHTML=list.length?list.map((p,i)=>'<article class="dreamer-player-card '+(selectedDreamersPlayers.has(p.name)?"selected":"")+'"><div class="player-card-top"><span class="player-position">'+p.pos+'</span><b>'+p.rating+'</b></div><div class="player-glow">'+p.pos+'</div><h3>'+p.name+'</h3><span class="player-nation">'+p.nation+'</span><span class="player-style">'+p.style+'</span><div class="player-mini-stats"><span><b>'+p.pace+'</b>SPD</span><span><b>'+p.shoot+'</b>SHT</span><span><b>'+p.pass+'</b>PAS</span><span><b>'+p.dribble+'</b>DRB</span><span><b>'+p.def+'</b>DEF</span></div><button type="button" class="select-player" onclick="toggleDreamersPlayer('+i+',this)">'+(selectedDreamersPlayers.has(p.name)?"✓ SELECTED":"＋ COMPARE")+'</button></article>').join(""):'<div class="hub-empty">No players found. Try another search.</div>'}
-function filterDreamersPlayers(){const q=(document.getElementById("playerSearch")?.value||"").toLowerCase(),f=document.getElementById("playerFilter")?.value||"ALL";renderDreamersPlayers(dreamersPlayers.filter(p=>(f==="ALL"||p.pos===f)&&[p.name,p.pos,p.style].join(" ").toLowerCase().includes(q)))}
-function toggleDreamersPlayer(i,btn){const p=dreamersPlayers[i];if(selectedDreamersPlayers.has(p.name))selectedDreamersPlayers.delete(p.name);else if(selectedDreamersPlayers.size<2)selectedDreamersPlayers.add(p.name);else{btn.textContent="MAX 2";setTimeout(()=>renderDreamersPlayers(),700);return}filterDreamersPlayers()}
-function compareDreamersPlayers(){const box=document.getElementById("playerCompare"),arr=dreamersPlayers.filter(p=>selectedDreamersPlayers.has(p.name));if(!box)return;if(arr.length<2){box.hidden=false;box.innerHTML="<b>SELECT TWO PLAYERS</b><span>Choose two cards above to compare their strengths.</span>";return}box.hidden=false;box.innerHTML="<div><small>PLAYER COMPARISON</small><h3>"+arr[0].name+" <span>VS</span> "+arr[1].name+"</h3></div><div class=\"compare-grid\">"+["rating","pace","shoot","pass","dribble","def"].map(k=>"<span>"+k.toUpperCase()+"</span><b>"+arr[0][k]+"</b><i><em style=\"width:"+arr[0][k]+"%\"></em></i><b>"+arr[1][k]+"</b>").join("")+"</div>"}
+
+function escapeHub(v){return String(v).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#039;"}[c]))}
+
+function renderDreamersPlayers(list=dreamersPlayers){
+ const grid=document.getElementById("dreamersPlayerGrid"); if(!grid)return;
+ grid.innerHTML=list.length ? list.map(p=>{
+   const selected=selectedDreamersPlayers.has(p.id);
+   return '<article class="dreamer-player-card efootball-inspired '+p.tone+(selected?' selected':'')+'">'+
+    '<div class="card-scan"></div><div class="player-card-top"><div><span class="player-rarity">DREAMERS</span><span class="player-position">'+p.pos+'</span></div><div class="player-rating"><small>OVR</small><b>'+p.rating+'</b></div></div>'+
+    '<div class="card-art"><span class="card-watermark">'+p.pos+'</span><div class="player-silhouette">'+p.mark+'</div><div class="card-art-label">PLAYER HUB</div></div>'+
+    '<div class="card-player-info"><div><h3>'+escapeHub(p.name)+'</h3><span class="player-nation">'+escapeHub(p.nation)+'</span></div><span class="player-style">'+escapeHub(p.style)+'</span></div>'+
+    '<div class="player-mini-stats"><span><b>'+p.pace+'</b><small>SPD</small></span><span><b>'+p.shoot+'</b><small>SHT</small></span><span><b>'+p.pass+'</b><small>PAS</small></span><span><b>'+p.dribble+'</b><small>DRB</small></span><span><b>'+p.def+'</b><small>DEF</small></span></div>'+
+    '<button type="button" class="select-player" onclick="toggleDreamersPlayer(\''+p.id+'\')">'+(selected?'✓ SELECTED':'＋ COMPARE')+'</button>'+
+   '</article>';
+ }).join(""):'<div class="hub-empty">No players found. Try another search.</div>';
+}
+
+function filterDreamersPlayers(){
+ const q=(document.getElementById("playerSearch")?.value||"").toLowerCase().trim();
+ const f=document.getElementById("playerFilter")?.value||"ALL";
+ renderDreamersPlayers(dreamersPlayers.filter(p=>(f==="ALL"||p.pos===f)&&[p.name,p.pos,p.style,p.nation].join(" ").toLowerCase().includes(q)));
+}
+
+function toggleDreamersPlayer(id){
+ const p=dreamersPlayers.find(x=>x.id===id); if(!p)return;
+ if(selectedDreamersPlayers.has(id)) selectedDreamersPlayers.delete(id);
+ else if(selectedDreamersPlayers.size<2) selectedDreamersPlayers.add(id);
+ else { const status=document.getElementById("playerCompare"); if(status){status.hidden=false;status.innerHTML="<b>MAX 2 PLAYERS</b><span>Remove one selected player before choosing another.</span>"} return; }
+ filterDreamersPlayers();
+}
+
+function compareDreamersPlayers(){
+ const box=document.getElementById("playerCompare"),arr=dreamersPlayers.filter(p=>selectedDreamersPlayers.has(p.id)); if(!box)return;
+ box.hidden=false;
+ if(arr.length<2){box.innerHTML="<div><small>PLAYER COMPARISON</small><h3>SELECT TWO PLAYERS</h3><span>Choose two cards above to compare their strengths.</span></div>";return}
+ box.innerHTML="<div><small>PLAYER COMPARISON</small><h3>"+escapeHub(arr[0].name)+" <span>VS</span> "+escapeHub(arr[1].name)+"</h3></div><div class=\"compare-grid\">"+["rating","pace","shoot","pass","dribble","def"].map(k=>"<span>"+k.toUpperCase()+"</span><b>"+arr[0][k]+"</b><i><em style=\"width:"+arr[0][k]+"%\"></em></i><b>"+arr[1][k]+"</b>").join("")+"</div>";
+}
+
 document.addEventListener("DOMContentLoaded",()=>renderDreamersPlayers());
+
 /* Dreamers Invite System */
 function dreamersInviteMessage(){const url=window.location.href.split("?")[0].split("#")[0];return "Join me on eFootball Dreamers ⚽🔥\n\nA new community for eFootball players, tournaments, player tools and more.\n\n"+url}
 async function shareDreamers(channel){const url=window.location.href.split("?")[0].split("#")[0],message=dreamersInviteMessage(),encodedUrl=encodeURIComponent(url),encodedText=encodeURIComponent(message),status=document.getElementById("inviteStatus");if(status)status.textContent="";try{if(channel==="copy"){await navigator.clipboard.writeText(message);if(status)status.textContent="✓ Invitation copied — paste it anywhere you want.";return}if(channel==="whatsapp"){window.open("https://wa.me/?text="+encodedText,"_blank","noopener");return}if(channel==="gmail"){window.open("https://mail.google.com/mail/?view=cm&fs=1&su="+encodeURIComponent("Join me on eFootball Dreamers ⚽🔥")+"&body="+encodedText,"_blank","noopener");return}if(channel==="twitter"){window.open("https://twitter.com/intent/tweet?text="+encodedText,"_blank","noopener");return}if(channel==="telegram"){window.open("https://t.me/share/url?url="+encodedUrl+"&text="+encodeURIComponent("Join me on eFootball Dreamers ⚽🔥"),"_blank","noopener");return}if(channel==="instagram"){await navigator.clipboard.writeText(message);window.open("https://www.instagram.com/","_blank","noopener");if(status)status.textContent="✓ Invitation copied. Open Instagram and paste it into a DM, Story or post.";return}if(navigator.share){await navigator.share({title:"eFootball Dreamers",text:message,url});}else{await navigator.clipboard.writeText(message);if(status)status.textContent="✓ Invitation copied to your clipboard."}}catch(err){if(status&&!/AbortError/.test(err.name||""))status.textContent="Copy the invitation and share it from your preferred app."}}
