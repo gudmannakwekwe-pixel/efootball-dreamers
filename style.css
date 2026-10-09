@@ -165,3 +165,6 @@ body:before{
 .official-card-symbol{font-size:58px;text-shadow:2px 2px 0 #ed2446,5px 5px 0 rgba(20,125,255,.7)}
 .official-card-placeholder b{font-size:10px;letter-spacing:1.5px}
 .official-card-placeholder small{max-width:210px;font-size:10px;line-height:1.5}
+
+/* Robust wordmark replacing the broken embedded image */
+.dreamers-logo-mark{display:inline-grid;place-items:center;width:38px;height:32px;margin-right:8px;clip-path:polygon(0 0,100% 0,82% 100%,0 100%);background:linear-gradient(115deg,#f4f6fb 0 36%,#168bff 37% 61%,#ed2446 62% 100%);color:#08090c;font-size:18px;font-weight:1000;font-style:italic;letter-spacing:-2px;vertical-align:middle;filter:drop-shadow(0 0 8px rgba(230,20,50,.28))}
