@@ -7,7 +7,7 @@
   window.renderDreamersPlayers=function(list=dreamersPlayers){
    const grid=document.getElementById("dreamersPlayerGrid"); if(!grid)return;
    const rows=list.length?list.map(p=>{
-    const selected=window.selectedDreamersPlayers?.has?.(p.id)||false;
+    const selected=selectedDreamersPlayers.has(p.id);
     const art=p.image?'<img class="hub-real-card-art" src="'+p.image+'" alt="'+p.name+' eFootball card">':'<div class="player-silhouette">'+(p.mark||p.name.slice(0,2))+'</div>';
     return '<article class="dreamer-player-card efootball-inspired '+(p.tone||"scarlet")+(selected?" selected":"")+'"><div class="card-scan"></div><div class="player-card-top"><div><span class="player-rarity">'+(p.image?"EPIC CARD":"DREAMERS")+'</span><span class="player-position">'+p.pos+'</span></div><div class="player-rating"><small>OVR</small><b>'+p.rating+'</b></div></div><div class="card-art '+(p.image?"has-real-card":"")+'">'+art+(p.image?"":'<span class="card-watermark">'+p.pos+'</span><div class="card-art-label">PLAYER HUB</div>')+'</div><div class="card-player-info"><div><h3>'+p.name+'</h3><span class="player-nation">'+p.nation+'</span></div><span class="player-style">'+p.style+'</span></div><div class="player-mini-stats"><span><b>'+p.pace+'</b><small>SPD</small></span><span><b>'+p.shoot+'</b><small>SHT</small></span><span><b>'+p.pass+'</b><small>PAS</small></span><span><b>'+p.dribble+'</b><small>DRB</small></span><span><b>'+p.def+'</b><small>DEF</small></span></div><button type="button" class="select-player" onclick="toggleDreamersPlayer(\''+p.id+'\')">'+(selected?"✓ SELECTED":"＋ COMPARE")+'</button></article>';
    }).join(""):'<div class="hub-empty">No players found. Try another search.</div>';
