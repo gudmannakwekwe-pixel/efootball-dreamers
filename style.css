@@ -158,3 +158,10 @@ body:before{
 .official-card-placeholder b{font-size:11px;line-height:1.6;letter-spacing:2px;color:#fff}
 .official-card-placeholder small{max-width:210px;font-size:10px;line-height:1.5;color:#a7afb9}
 @media(max-width:520px){.official-card-entry .official-card-missing{height:220px}.top-efootball-logo{width:39px}.efootball-mark{width:34px;height:27px;font-size:24px}}
+
+/* Player Hub card panel polish */
+.official-card-entry .official-card-missing{height:210px;background:radial-gradient(ellipse at 50% 35%,rgba(231,35,64,.22),transparent 45%),linear-gradient(145deg,#111820,#08090d 65%,#1a0c11);border:1px solid rgba(230,35,64,.25)}
+.official-card-placeholder{padding:16px;gap:10px}
+.official-card-symbol{font-size:58px;text-shadow:2px 2px 0 #ed2446,5px 5px 0 rgba(20,125,255,.7)}
+.official-card-placeholder b{font-size:10px;letter-spacing:1.5px}
+.official-card-placeholder small{max-width:210px;font-size:10px;line-height:1.5}
