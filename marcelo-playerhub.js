@@ -15,7 +15,7 @@
     const hasUploadedCard=!!p.image;
     const art=hasUploadedCard
       ? '<img class="hub-real-card-art" src="'+p.image+'" alt="User-supplied eFootball card for '+p.name+'">'
-      : '<div class="official-card-placeholder"><span class="official-card-symbol">e</span><b>EXACT CARD ART<br>NOT VERIFIED</b><small>Check card version</small></div>';
+      : '<div class="official-card-placeholder"><span class="official-card-symbol">'+escapeHub(p.mark||p.name.slice(0,2).toUpperCase())+'</span><b>CARD IMAGE UNAVAILABLE</b><small>Use “Find exact card on eFHUB” below for the genuine version.</small></div>';
     const badge=hasUploadedCard?'USER-SUPPLIED CARD':'EFHUB OVR LISTING';
     const ratingLabel=hasUploadedCard?'CARD OVR':'LISTED OVR';
     const status=hasUploadedCard
