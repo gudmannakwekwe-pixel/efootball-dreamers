@@ -147,3 +147,14 @@ body:before{
 .efootball-inspired.selected .select-player{background:linear-gradient(90deg,#9d1828,#e23649);color:#fff;border-color:#ff5668}
 @media(max-width:800px){.dreamer-player-card.efootball-inspired{min-height:400px}}
 @media(max-width:520px){.dreamer-player-card.efootball-inspired{min-height:385px}.efootball-inspired .card-art{height:185px}.efootball-inspired .player-silhouette{width:108px;height:108px;font-size:34px}}
+
+/* Dreamers visual fixes: reliable navbar mark and compact card-art lookup panel */
+.top-efootball-logo{width:54px;height:38px;display:grid;place-items:center;flex:0 0 auto}
+.efootball-mark{display:grid;place-items:center;width:43px;height:32px;clip-path:polygon(0 0,100% 0,82% 100%,0 100%);background:linear-gradient(115deg,#f1f4f7 0 38%,#168bff 39% 60%,#ee2444 61% 100%);color:#08090c;font-weight:1000;font-size:29px;font-style:italic;line-height:1;text-shadow:1px 1px 0 rgba(255,255,255,.25);filter:drop-shadow(0 0 9px rgba(229,9,37,.25))}
+.official-card-entry .official-card-missing{height:235px;display:grid;place-items:center;overflow:hidden;background:radial-gradient(ellipse at 50% 25%,rgba(255,54,81,.19),transparent 38%),linear-gradient(145deg,#171015,#090b10 62%,#141016);border:1px solid rgba(255,78,96,.2);position:relative}
+.official-card-entry .official-card-missing:after{content:"";position:absolute;inset:12px;border:1px solid rgba(255,255,255,.06);clip-path:polygon(0 0,100% 0,100% 70%,70% 100%,0 100%);pointer-events:none}
+.official-card-placeholder{height:100%;width:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:9px;text-align:center;color:#aab3bd;position:relative;z-index:2;padding:16px;box-sizing:border-box}
+.official-card-symbol{font-size:64px;font-weight:1000;letter-spacing:-4px;color:#f4f4f4;line-height:1;text-shadow:2px 2px 0 #ed2446,5px 5px 0 rgba(20,125,255,.7)}
+.official-card-placeholder b{font-size:11px;line-height:1.6;letter-spacing:2px;color:#fff}
+.official-card-placeholder small{max-width:210px;font-size:10px;line-height:1.5;color:#a7afb9}
+@media(max-width:520px){.official-card-entry .official-card-missing{height:220px}.top-efootball-logo{width:39px}.efootball-mark{width:34px;height:27px;font-size:24px}}
