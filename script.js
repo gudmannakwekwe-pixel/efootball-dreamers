@@ -98,12 +98,17 @@ async function shareDreamers(channel){const url=window.location.href.split("?")[
 
 /* Dreamers Featured Player Cards */
 const featuredDreamersCards=[
-{name:"Kylian Mbappé",team:"FRANCE",pos:"CF",rating:99,style:"Goal Poacher",image:"https://commons.wikimedia.org/wiki/Special:FilePath/Kylian_Mbappe_-_France_v_Norway_-_26_June_2026.jpg",stats:[98,96,87,97]},
-{name:"Lionel Messi",team:"ARGENTINA",pos:"AMF",rating:98,style:"Creative Playmaker",image:"https://commons.wikimedia.org/wiki/Special:FilePath/Lionel_Messi_Argentina_v_Egypt_7_July_2026-207.jpg",stats:[86,94,97,99]},
-{name:"Cristiano Ronaldo",team:"PORTUGAL",pos:"CF",rating:98,style:"Goal Poacher",image:"https://commons.wikimedia.org/wiki/Special:FilePath/Christiano_Ronaldo_at_world_cup_match_2026.jpg",stats:[91,98,88,91]},
-{name:"Neymar Jr",team:"BRAZIL",pos:"LWF",rating:96,style:"Creative Playmaker",image:"https://commons.wikimedia.org/wiki/Special:FilePath/Neymar.jpg",stats:[93,91,95,98]}
+{name:"Kylian Mbappé",team:"FRANCE",flag:"🇫🇷",pos:"CF",rating:99,rarity:"EPIC",style:"Goal Poacher",image:"https://commons.wikimedia.org/wiki/Special:FilePath/Kylian_Mbappe_France_v_Senegal_16_June_2026-391.jpg",stats:[98,96,87,97]},
+{name:"Lionel Messi",team:"ARGENTINA",flag:"🇦🇷",pos:"AMF",rating:98,rarity:"LEGENDARY",style:"Creative Playmaker",image:"https://commons.wikimedia.org/wiki/Special:FilePath/Lionel_Messi_close-up.jpg",stats:[86,94,97,99]},
+{name:"Cristiano Ronaldo",team:"PORTUGAL",flag:"🇵🇹",pos:"CF",rating:98,rarity:"EPIC",style:"Goal Poacher",image:"https://commons.wikimedia.org/wiki/Special:FilePath/Cristiano_Ronaldo_2018_(cropped).jpg",stats:[91,98,88,91]},
+{name:"Neymar Jr",team:"BRAZIL",flag:"🇧🇷",pos:"LWF",rating:96,rarity:"RARE",style:"Creative Playmaker",image:"https://commons.wikimedia.org/wiki/Special:FilePath/Neymar.jpg",stats:[93,91,95,98]}
 ];
-function renderFeaturedCards(){const grid=document.getElementById("featuredCardGrid");if(!grid)return;grid.innerHTML=featuredDreamersCards.map((p,i)=>'<article class="featured-player-card"><div class="card-shine"></div><div class="fc-top"><span>EPIC</span><b>'+p.rating+'</b></div><div class="fc-image-wrap"><img src="'+p.image+'" alt="'+p.name+'" loading="lazy" onerror="this.style.display=\'none\'"><div class="fc-position">'+p.pos+'</div></div><div class="fc-info"><small>'+p.team+' • '+p.style+'</small><h3>'+p.name+'</h3><div class="fc-stats"><span><b>'+p.stats[0]+'</b>SPD</span><span><b>'+p.stats[1]+'</b>SHT</span><span><b>'+p.stats[2]+'</b>PAS</span><span><b>'+p.stats[3]+'</b>DRB</span></div><button type="button" onclick="openDreamersPlayerCard('+i+')">VIEW PLAYER →</button></div></article>').join("")}
+function renderFeaturedCards(){
+ const grid=document.getElementById("featuredCardGrid");if(!grid)return;
+ grid.innerHTML=featuredDreamersCards.map((p,i)=>'<article class="featured-player-card rarity-'+p.rarity.toLowerCase()+'"><div class="fc-card-frame"></div><div class="card-shine"></div><div class="fc-top"><span class="fc-rarity"><i>✦</i> '+p.rarity+'</span><div class="fc-rating"><small>OVR</small><b>'+p.rating+'</b></div></div><div class="fc-image-wrap"><div class="fc-player-aura"></div><div class="fc-fallback-mark">'+p.name.split(' ').map(n=>n[0]).slice(0,2).join('')+'</div><img src="'+p.image+'" alt="'+p.name+'" loading="lazy" onerror="this.remove();this.parentElement.classList.add(\'fc-image-fallback\')"><span class="fc-position">'+p.pos+'</span><span class="fc-flag">'+p.flag+'</span><span class="fc-card-series">DREAMERS • PLAYER SERIES</span></div><div class="fc-info"><small class="fc-team">'+p.team+' <span>•</span> '+p.style+'</small><h3>'+p.name+'</h3><div class="fc-stats"><span><b>'+p.stats[0]+'</b>SPD</span><span><b>'+p.stats[1]+'</b>SHT</span><span><b>'+p.stats[2]+'</b>PAS</span><span><b>'+p.stats[3]+'</b>DRB</span></div><button type="button" onclick="openDreamersPlayerCard('+i+')">VIEW PLAYER <span>↗</span></button></div></article>').join("");
+}
+function renderFeaturedCardsOnImageError(img){img.remove();img.parentElement.classList.add('fc-image-fallback')}
+document.addEventListener("DOMContentLoaded",renderFeaturedCards);
 function openDreamersPlayerCard(i){const p=featuredDreamersCards[i];alert(p.name+"\n"+p.pos+" • "+p.style+"\nDreamers demo rating: "+p.rating+"\n\nThis is a Dreamers-designed card, not an official eFootball card.");}
 document.addEventListener("DOMContentLoaded",renderFeaturedCards);
 
