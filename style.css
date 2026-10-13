@@ -225,3 +225,45 @@ body:before{
 @media(max-width:1000px){.legend-figure{opacity:.35}.figure-mid-left{left:7%}.figure-mid-right{right:7%}.goat-stage{grid-template-columns:repeat(2,minmax(0,1fr))}.goat-card{min-height:300px}.goat-card img{height:245px}}
 @media(max-width:650px){.hero{min-height:650px;padding:76px 5% 95px}.hero-copy{padding:18px 8px}.hero h1{font-size:clamp(42px,11vw,64px);letter-spacing:-2px}.hero-copy>p:not(.eyebrow){font-size:14px}.legend-figure{width:120px;opacity:.22;bottom:-5px}.legend-figure img{height:270px}.figure-mid-left,.figure-mid-right{display:none!important}.hero-mark{display:none}.trust{gap:9px;font-size:10px}.goat-wallpaper{padding:60px 5% 28px}.goat-stage{gap:10px}.goat-card{min-height:255px;border-radius:12px}.goat-card img{height:195px}.goat-card>div{padding:0 10px 13px;margin-top:-32px}.goat-card h3{font-size:19px}.goat-card p{font-size:7px}.goat-number{font-size:38px}.flame-a{left:calc(50% - 125px)}.flame-b{left:calc(50% - 85px)}.flame-c{right:calc(50% - 125px)}.flame-d{right:calc(50% - 85px)}.giant-ef-logo{width:180px}}
 @media(prefers-reduced-motion:reduce){.legend-figure,.goat-card,.flame{animation:none!important;transition:none!important}}
+
+
+/* DREAMERS PLAYER CARDS — rarity-inspired, photo-first design */
+.featured-card-grid{align-items:stretch;gap:20px}
+.featured-player-card{--tier-a:#ff9b36;--tier-b:#ed3b27;--tier-glow:rgba(255,89,35,.24);isolation:isolate;min-height:0;padding:0 0 14px;border-radius:17px;background:linear-gradient(155deg,#111923 0%,#081018 42%,#07090e 100%);border:1px solid color-mix(in srgb,var(--tier-a) 50%,transparent);box-shadow:0 15px 40px rgba(0,0,0,.4),inset 0 0 25px rgba(255,255,255,.015)}
+.featured-player-card.rarity-legendary{--tier-a:#d6a2ff;--tier-b:#7237da;--tier-glow:rgba(145,69,255,.28);background:linear-gradient(150deg,#25103f,#0a0b18 54%,#080710)}
+.featured-player-card.rarity-epic{--tier-a:#ffbd65;--tier-b:#f0442e;--tier-glow:rgba(255,79,32,.3);background:linear-gradient(150deg,#36150e,#11090c 56%,#08070b)}
+.featured-player-card.rarity-rare{--tier-a:#75caff;--tier-b:#2869ff;--tier-glow:rgba(31,111,255,.3);background:linear-gradient(150deg,#0d2a53,#08101e 56%,#070a11)}
+.featured-player-card.rarity-uncommon{--tier-a:#8dffb0;--tier-b:#13884b;--tier-glow:rgba(20,210,102,.24);background:linear-gradient(150deg,#0b3828,#07140f 56%,#070b0b)}
+.featured-player-card:hover{transform:translateY(-7px) scale(1.008);border-color:var(--tier-a);box-shadow:0 25px 60px var(--tier-glow),0 16px 40px rgba(0,0,0,.4)}
+.fc-card-frame{position:absolute;inset:5px;z-index:-1;pointer-events:none;border:1px solid color-mix(in srgb,var(--tier-a) 24%,transparent);border-radius:13px;clip-path:polygon(0 0,100% 0,100% 95%,95% 100%,5% 100%,0 95%)}
+.card-shine{z-index:0;inset:0;height:100%;opacity:.85;background:radial-gradient(ellipse at 50% 24%,var(--tier-glow),transparent 55%);pointer-events:none}
+.fc-top{padding:14px 15px 10px}
+.fc-top .fc-rarity{display:flex;align-items:center;gap:6px;padding:6px 9px;color:var(--tier-a);border-color:color-mix(in srgb,var(--tier-a) 55%,transparent);background:rgba(0,0,0,.24);font-size:9px;font-weight:900;letter-spacing:1.5px}
+.fc-rarity i{font-style:normal;font-size:12px}
+.fc-rating{display:flex;flex-direction:column;align-items:flex-end;color:#fff}
+.fc-rating small{font-size:7px;letter-spacing:2px;color:var(--tier-a)}
+.fc-top .fc-rating b{font-size:36px;line-height:.95;text-shadow:0 0 18px var(--tier-glow)}
+.fc-image-wrap{height:300px;margin:0 9px;border-radius:12px;background:linear-gradient(145deg,color-mix(in srgb,var(--tier-b) 34%,#10151c),#080a0f 70%);border:1px solid color-mix(in srgb,var(--tier-a) 36%,transparent);overflow:hidden;isolation:isolate}
+.fc-image-wrap:before{content:"";position:absolute;inset:0;z-index:0;opacity:.34;background:repeating-linear-gradient(128deg,transparent 0 19px,rgba(255,255,255,.11) 20px,transparent 22px 38px),radial-gradient(ellipse at 50% 30%,var(--tier-glow),transparent 66%)}
+.fc-image-wrap img{position:relative;z-index:1;width:100%;height:100%;object-fit:cover;object-position:center 18%;filter:saturate(1.12) contrast(1.08);mix-blend-mode:normal;mask-image:linear-gradient(#000 0%,#000 68%,transparent 100%);-webkit-mask-image:linear-gradient(#000 0%,#000 68%,transparent 100%)}
+.fc-image-wrap:after{z-index:2;background:linear-gradient(180deg,rgba(0,0,0,.02) 35%,rgba(3,5,9,.2) 55%,#080a0f 100%)}
+.fc-player-aura{position:absolute;z-index:0;left:15%;right:15%;top:10%;height:70%;border-radius:50%;background:var(--tier-glow);filter:blur(28px)}
+.fc-fallback-mark{display:none;position:absolute;z-index:1;inset:0;align-items:center;justify-content:center;font-size:100px;font-weight:1000;letter-spacing:-8px;color:var(--tier-a);opacity:.75;text-shadow:0 0 30px var(--tier-glow)}
+.fc-image-fallback .fc-fallback-mark{display:flex}
+.fc-image-fallback:before{content:"";position:absolute;inset:14px;z-index:1;border:1px solid color-mix(in srgb,var(--tier-a) 40%,transparent);clip-path:polygon(50% 0,100% 22%,85% 100%,15% 100%,0 22%)}
+.fc-position{left:13px;bottom:17px;font-size:32px;font-style:italic;letter-spacing:-1px;color:#fff}
+.fc-flag{position:absolute;right:12px;bottom:13px;z-index:3;font-size:23px;filter:drop-shadow(0 2px 4px #000)}
+.fc-card-series{position:absolute;top:12px;left:12px;z-index:3;font-size:7px;font-weight:900;letter-spacing:1.5px;color:rgba(255,255,255,.8);text-shadow:0 2px 8px #000}
+.fc-info{padding:11px 14px 0}
+.fc-info .fc-team{display:block;color:var(--tier-a);font-size:8px;font-weight:900;letter-spacing:1.4px}
+.fc-info .fc-team span{color:#fff;opacity:.6;padding:0 3px}
+.fc-info h3{font-size:22px;letter-spacing:-.6px;margin:5px 0 12px}
+.fc-stats{gap:6px}
+.fc-stats span{background:rgba(0,0,0,.2);border-color:color-mix(in srgb,var(--tier-a) 20%,transparent);padding:8px 2px;color:#9ba7b4;font-size:7px;letter-spacing:.7px}
+.fc-stats b{font-size:15px;color:#fff}
+.fc-info button{display:flex;align-items:center;justify-content:center;gap:8px;padding:11px;background:linear-gradient(100deg,color-mix(in srgb,var(--tier-b) 18%,#0b1018),rgba(0,0,0,.22));border-color:color-mix(in srgb,var(--tier-a) 45%,transparent);color:var(--tier-a);letter-spacing:1px}
+.fc-info button span{font-size:14px}
+.cards-disclaimer{line-height:1.6}
+@media(max-width:950px){.fc-image-wrap{height:270px}}
+@media(max-width:520px){.fc-image-wrap{height:340px}.fc-info h3{font-size:24px}}
+@media(prefers-reduced-motion:reduce){.featured-player-card{transition:none}}
