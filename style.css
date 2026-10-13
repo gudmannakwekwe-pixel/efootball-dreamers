@@ -427,3 +427,159 @@ footer{padding:35px clamp(18px,6.5vw,94px);display:flex;align-items:center;justi
  #on-fire .match-score{font-size:11px}
 }
 @media(prefers-reduced-motion:reduce){.hero:before{animation:none}.legend-figure,.goat-card,.feature,.event{transition:none!important}}
+
+
+/* ARENA POWER HOMEPAGE — stronger esports identity, depth and clear entry points */
+#home.hero{
+  min-height:min(850px,calc(100vh - 104px));
+  padding:clamp(78px,9vw,132px) 5% 105px;
+  isolation:isolate;
+  background:
+    radial-gradient(ellipse at 50% 46%,rgba(14,29,48,.68),transparent 42%),
+    linear-gradient(115deg,#030509 0%,#08060c 46%,#030509 100%);
+}
+#home.hero:before{
+  inset:-12%;
+  background:
+    radial-gradient(ellipse at 50% 48%,rgba(230,20,54,.18),transparent 24%),
+    radial-gradient(ellipse at 12% 45%,rgba(20,142,255,.22),transparent 29%),
+    radial-gradient(ellipse at 88% 48%,rgba(18,111,205,.17),transparent 26%),
+    linear-gradient(120deg,#03050a,#0b0911 50%,#03050a);
+}
+#home.hero:after{
+  opacity:.78;
+  background-image:
+    linear-gradient(rgba(39,160,255,.06) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,45,76,.045) 1px,transparent 1px),
+    radial-gradient(ellipse at center,transparent 0 30%,rgba(0,0,0,.78) 82%);
+  background-size:38px 38px,38px 38px,100% 100%;
+}
+#home .hero-copy{
+  width:min(100%,930px);
+  max-width:930px;
+  padding:clamp(24px,4vw,48px) clamp(18px,4vw,46px);
+  border:1px solid rgba(105,157,199,.19);
+  border-radius:26px;
+  background:linear-gradient(135deg,rgba(6,12,21,.78),rgba(8,7,13,.66) 58%,rgba(25,5,12,.54));
+  box-shadow:0 30px 100px #0009,inset 0 1px 0 #ffffff0c,0 0 70px #0b7dbe0a;
+  backdrop-filter:blur(10px);
+}
+#home .hero-copy .eyebrow{
+  display:inline-flex;align-items:center;gap:9px;
+  padding:9px 13px;border:1px solid #2c6383;border-radius:5px;
+  background:linear-gradient(100deg,#0a2333b8,#170b13b8);
+  color:#9ddcff;font-size:10px;letter-spacing:2.1px;
+}
+#home .hero h1{
+  margin:20px 0 18px;
+  font-size:clamp(54px,8.3vw,112px);
+  line-height:.88;
+  letter-spacing:-.075em;
+  text-shadow:0 8px 35px #000c,0 0 50px #167dcc14;
+}
+#home .hero h1 em{
+  color:transparent;
+  -webkit-text-stroke:1px rgba(225,238,250,.72);
+  text-shadow:none;
+}
+#home .hero h1 span{
+  color:#fff;
+  background:linear-gradient(95deg,#ff3f60 0%,#f11d48 46%,#45b9ff 100%);
+  -webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;
+  filter:drop-shadow(0 0 23px #e91b3b22);
+}
+#home .hero-copy>p:not(.eyebrow){
+  max-width:620px;color:#b5c2d2;font-size:clamp(14px,1.35vw,17px);line-height:1.8;
+}
+#home .actions{gap:13px;margin-top:30px}
+#home .actions button,#home .actions .outline{
+  min-height:50px;padding:14px 21px;border-radius:7px;
+  font-size:12px;font-weight:950;letter-spacing:.65px;text-transform:uppercase;
+}
+#home .actions button{
+  border:1px solid #ff4563;
+  background:linear-gradient(105deg,#c90e32,#f32b4e 58%,#a80c2a);
+  box-shadow:0 9px 32px #ed234429,inset 0 1px #ffffff2b;
+}
+#home .actions button:hover{box-shadow:0 12px 38px #ed23445c;transform:translateY(-3px)}
+#home .actions .outline{
+  display:inline-flex;align-items:center;justify-content:center;
+  border:1px solid #28678b;color:#d7efff;
+  background:linear-gradient(105deg,#0a2131,#0b1019 75%);
+}
+#home .actions .outline:hover{border-color:#4bbcff;color:#fff;transform:translateY(-3px)}
+#home .trust{gap:16px 22px;margin-top:21px;color:#a3b1c1;font-size:11px}
+#home .trust span:before{color:#56c4ff}
+#home .arena-pillars{
+  display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px;
+  width:min(100%,720px);margin:29px auto 0;text-align:left;
+}
+#home .arena-pillars>a{
+  display:flex;align-items:center;gap:10px;min-width:0;padding:13px 12px;
+  border:1px solid #26364a;border-radius:10px;text-decoration:none;color:#eef6ff;
+  background:linear-gradient(140deg,#101b29d9,#080b12e8);
+  transition:transform .2s,border-color .2s,background .2s;
+}
+#home .arena-pillars>a:hover{transform:translateY(-3px);border-color:#238ac2;background:linear-gradient(140deg,#102b40,#100a12)}
+#home .pillar-icon{
+  display:grid;place-items:center;flex:0 0 34px;height:34px;border-radius:8px;
+  color:#7bd2ff;background:linear-gradient(135deg,#113149,#1b0c18);font-size:19px;
+}
+#home .arena-pillars>a:nth-child(2) .pillar-icon{color:#ff6b81}
+#home .arena-pillars>a>span:nth-child(2){display:flex;flex-direction:column;gap:4px;min-width:0}
+#home .arena-pillars b{font-size:9px;letter-spacing:1px;white-space:nowrap}
+#home .arena-pillars small{font-size:10px;color:#93a4b8;white-space:nowrap}
+#home .pillar-arrow{margin-left:auto;color:#65829b;font-size:16px}
+#home .legend-figure{
+  opacity:.76;filter:drop-shadow(0 20px 45px #000e) drop-shadow(0 0 28px #167fba1c);
+}
+#home .legend-figure img{
+  filter:saturate(.78) contrast(1.12);
+  mask-image:linear-gradient(to bottom,#000 0%,#000 58%,transparent 100%);
+  -webkit-mask-image:linear-gradient(to bottom,#000 0%,#000 58%,transparent 100%);
+}
+#home .figure-left{left:-1.5%;transform:rotate(-5deg)}
+#home .figure-right{right:-1.5%;transform:rotate(5deg)}
+#home .figure-mid-left{left:12%;opacity:.48}
+#home .figure-mid-right{right:12%;opacity:.48}
+#home .hero-mark{right:3%;bottom:3%;opacity:.75;transform:scale(.78);transform-origin:bottom right}
+.launch-ribbon{
+  position:relative;overflow:hidden;
+  background:linear-gradient(90deg,#080d15,#0c1927 38%,#160913 72%,#080d15);
+  border-bottom-color:#28415a;
+}
+.launch-ribbon:before{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:#ff385b;box-shadow:0 0 12px #ff385b;animation:arenaPulse 1.8s ease-in-out infinite}
+.launch-ribbon a{color:#8bd7ff;text-decoration:none;border-bottom:1px solid #3280a8;padding-bottom:2px}
+.launch-ribbon a:hover{color:#fff;border-color:#fff}
+@keyframes arenaPulse{0%,100%{opacity:1;box-shadow:0 0 12px #ff385b}50%{opacity:.5;box-shadow:0 0 4px #ff385b}}
+@media(max-width:1000px){
+  #home.hero{min-height:710px;padding:75px 4% 100px}
+  #home .legend-figure{opacity:.29}
+  #home .figure-mid-left{left:2%}
+  #home .figure-mid-right{right:2%}
+  #home .hero-mark{display:none}
+}
+@media(max-width:600px){
+  #home.hero{min-height:690px;padding:48px 12px 82px}
+  #home .hero-copy{padding:23px 14px 20px;border-radius:17px;background:linear-gradient(145deg,#070d16ee,#0a070cee);backdrop-filter:blur(7px)}
+  #home .hero-copy .eyebrow{font-size:8px;letter-spacing:1.25px;padding:8px 9px}
+  #home .hero h1{font-size:clamp(43px,12.5vw,64px);letter-spacing:-.07em}
+  #home .hero-copy>p:not(.eyebrow){font-size:13px;line-height:1.7}
+  #home .actions{gap:9px}
+  #home .actions button,#home .actions .outline{width:100%;min-height:47px}
+  #home .trust{gap:8px 12px;font-size:9px}
+  #home .arena-pillars{grid-template-columns:1fr;gap:7px;margin-top:21px}
+  #home .arena-pillars>a{padding:9px 11px}
+  #home .pillar-icon{height:30px;flex-basis:30px}
+  #home .legend-figure{opacity:.15;width:96px;bottom:-3px}
+  #home .legend-figure img{height:220px}
+  #home .figure-left{left:-16px}
+  #home .figure-right{right:-16px}
+  #home .figure-mid-left,#home .figure-mid-right{display:none!important}
+  .launch-ribbon{font-size:8px;letter-spacing:.45px;padding:8px 7px}
+}
+@media(prefers-reduced-motion:reduce){
+  .launch-ribbon:before{animation:none}
+  #home .arena-pillars>a,#home .actions button,#home .actions .outline{transition:none}
+}
