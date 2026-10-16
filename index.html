@@ -121,10 +121,20 @@
 
 <section id="feed" class="section dark">
 <div class="section-head"><div><p class="eyebrow">LIVE COMMUNITY</p><h2>What Dreamers are talking about</h2></div><button class="outline-btn" onclick="newPost()">＋ New Post</button></div>
-<div class="feed-grid">
-<article class="post"><div class="post-top"><div class="avatar">JM</div><div><b>JamalM</b><small>• 12 min ago</small></div><span>TACTICS</span></div><h3>What formation are you using this week?</h3><p>Looking for ideas for a balanced possession setup. Drop your favourite formation below.</p><div class="post-actions"><button onclick="react(this)">♡ 18</button><button onclick="alert('Comments are coming soon!')">💬 7</button></div></article>
-<article class="post"><div class="post-top"><div class="avatar purple">DK</div><div><b>DreamKing</b><small>• 34 min ago</small></div><span>COMMUNITY</span></div><h3>Weekend friendly matches?</h3><p>Anyone interested in joining a relaxed community match this weekend?</p><div class="post-actions"><button onclick="react(this)">♡ 24</button><button onclick="alert('Comments are coming soon!')">💬 11</button></div></article>
-<article class="post"><div class="post-top"><div class="avatar orange">FC</div><div><b>FC_Atlas</b><small>• 1 hr ago</small></div><span>HELP</span></div><h3>Share your squad-building tips</h3><p>Let's help newer players understand roles, balance and team chemistry.</p><div class="post-actions"><button onclick="react(this)">♡ 31</button><button onclick="alert('Comments are coming soon!')">💬 15</button></div></article>
+<div class="community-tools">
+  <label class="community-search-label" for="communitySearch">Search discussions</label>
+  <input id="communitySearch" class="community-search" type="search" placeholder="Search tactics, squad ideas, questions…" oninput="filterCommunityFeed(this.value)">
+  <div class="community-filters" role="group" aria-label="Filter community posts">
+    <button class="community-filter active" type="button" onclick="setCommunityFilter('ALL',this)">All posts</button>
+    <button class="community-filter" type="button" onclick="setCommunityFilter('TACTICS',this)">Tactics</button>
+    <button class="community-filter" type="button" onclick="setCommunityFilter('SQUAD SHOWCASE',this)">Squads</button>
+    <button class="community-filter" type="button" onclick="setCommunityFilter('HELP',this)">Help</button>
+    <button class="community-filter" type="button" onclick="setCommunityFilter('FRIENDLY',this)">Friendlies</button>
+  </div>
+</div>
+<div id="communityNotice" class="community-notice" aria-live="polite">Connect with your account to publish, react and comment.</div>
+<div id="communityFeed" class="feed-grid community-feed" aria-live="polite">
+  <article class="post community-loading"><div class="post-top"><div class="avatar">ED</div><div><b>Dreamers Community</b><small>Connecting to the live feed…</small></div></div><h3>One community. Every Dreamer.</h3><p>Player tactics, squad showcases, friendly challenges and helpful answers belong here.</p></article>
 </div>
 </section>
 
