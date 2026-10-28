@@ -30,6 +30,32 @@
     const stats=[["SPD",p.pace],["SHT",p.shoot],["PAS",p.pass],["DRB",p.dribble]];
     return '<article class="dreamers-ultimate-card '+(p.tone||"scarlet")+(selected?" selected":"")+'"><div class="dreamers-card-border"></div><div class="dreamers-card-top"><div class="dreamers-card-brand"><span class="dreamers-card-logo">eF</span><span><b>DREAMERS</b><small>ELITE SERIES</small></span></div><span class="dreamers-card-rarity">✦ '+(p.dataType==="listed"?"PLAYER EDITION":"DREAMERS EDITION")+'</span></div><div class="dreamers-card-hero '+(photo?"has-photo":"dreamers-art-fallback")+'"><div class="dreamers-card-glow"></div><div class="dreamers-card-initials">'+escapeHub(initials)+'</div>'+art+'<div class="dreamers-card-number">'+escapeHub(p.pos)+'</div><div class="dreamers-card-nationality">'+escapeHub(p.nation)+'</div><div class="dreamers-card-watermark">eF</div></div><div class="dreamers-card-rating"><div><small>DREAMERS OVR</small><strong>'+p.rating+'</strong></div><div class="dreamers-card-name"><h3>'+escapeHub(p.name)+'</h3><span>'+escapeHub(p.style)+'</span></div></div><div class="dreamers-card-stats">'+stats.map(a=>'<div><b>'+a[1]+'</b><small>'+a[0]+'</small></div>').join("")+'</div><div class="dreamers-card-footer"><span>PLAY • CONNECT • COMPETE</span><span>eF DREAMERS</span></div><button type="button" class="dreamers-card-compare" onclick="toggleDreamersPlayer(\''+p.id+'\')">'+(selected?"✓ ADDED TO COMPARISON":"＋ COMPARE PLAYER")+'</button><p class="dreamers-card-note">Custom Dreamers card design · ratings are community/demo estimates, not official Konami data.</p></article>';
    }).join(""):'<div class="hub-empty">No players match that search. Try another name or position.</div>';
+   // Resolve missing player photos from Wikipedia's public page-image API.
+   // Keep the custom Dreamers card design even when a player has no photo online.
+   grid.querySelectorAll(".dreamers-ultimate-card").forEach(card=>{
+    const img=card.querySelector(".dreamers-card-photo");
+    if(img)return;
+    const title=card.querySelector(".dreamers-card-name h3")?.textContent?.trim();
+    const hero=card.querySelector(".dreamers-card-hero");
+    if(!title||!hero||hero.dataset.photoLookup==="done")return;
+    hero.dataset.photoLookup="done";
+    const params=new URLSearchParams({action:"query",generator:"search",gsrsearch:title+" footballer",gsrnamespace:"0",gsrlimit:"5",prop:"pageimages",piprop:"thumbnail",pithumbsize:"500",format:"json",origin:"*"});
+    fetch("https://en.wikipedia.org/w/api.php?"+params.toString())
+     .then(response=>response.ok?response.json():null)
+     .then(data=>{
+      const pages=Object.values(data?.query?.pages||{});
+      const best=pages.find(page=>page.thumbnail?.source&&page.title.toLowerCase().includes(title.toLowerCase()))||pages.find(page=>page.thumbnail?.source);
+      if(!best?.thumbnail?.source||!hero.isConnected)return;
+      const photo=document.createElement("img");
+      photo.className="dreamers-card-photo";
+      photo.alt=title+" player photo";
+      photo.loading="lazy";
+      photo.src=best.thumbnail.source;
+      photo.onerror=()=>{photo.remove();hero.classList.add("dreamers-art-fallback")};
+      hero.appendChild(photo);
+      hero.classList.add("has-photo");
+     }).catch(()=>{});
+   });
   };
   const filter=document.getElementById("playerFilter"); if(filter){["LB","RB","LWF","RWF","SS","RMF","LMF"].forEach(pos=>{if(!Array.from(filter.options).some(o=>o.value===pos)){const opt=document.createElement("option");opt.value=pos;opt.textContent=pos;filter.add(opt)}})}
   renderDreamersPlayers(dreamersPlayers);
