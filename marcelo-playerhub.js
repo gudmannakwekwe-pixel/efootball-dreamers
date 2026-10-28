@@ -32,29 +32,48 @@
    }).join(""):'<div class="hub-empty">No players match that search. Try another name or position.</div>';
    // Resolve missing player photos from Wikipedia's public page-image API.
    // Keep the custom Dreamers card design even when a player has no photo online.
-   grid.querySelectorAll(".dreamers-ultimate-card").forEach(card=>{
-    const img=card.querySelector(".dreamers-card-photo");
-    if(img)return;
-    const title=card.querySelector(".dreamers-card-name h3")?.textContent?.trim();
-    const hero=card.querySelector(".dreamers-card-hero");
+   const lookupDreamersPhoto=(title,hero)=>{
     if(!title||!hero||hero.dataset.photoLookup==="done")return;
     hero.dataset.photoLookup="done";
-    const params=new URLSearchParams({action:"query",generator:"search",gsrsearch:title+" footballer",gsrnamespace:"0",gsrlimit:"5",prop:"pageimages",piprop:"thumbnail",pithumbsize:"500",format:"json",origin:"*"});
+    const tryPhoto=url=>{
+     if(!url||!hero.isConnected)return;
+     const photo=document.createElement("img");
+     photo.className="dreamers-card-photo";
+     photo.alt=title+" player photo";
+     photo.loading="lazy";
+     photo.referrerPolicy="no-referrer";
+     photo.onload=()=>hero.classList.add("has-photo");
+     photo.onerror=()=>{photo.remove();};
+     photo.src=url;
+     hero.appendChild(photo);
+    };
+    const params=new URLSearchParams({action:"query",generator:"search",gsrsearch:'"'+title+'" footballer',gsrnamespace:"0",gsrlimit:"8",prop:"pageimages",piprop:"thumbnail",pithumbsize:"600",format:"json",origin:"*"});
     fetch("https://en.wikipedia.org/w/api.php?"+params.toString())
      .then(response=>response.ok?response.json():null)
      .then(data=>{
       const pages=Object.values(data?.query?.pages||{});
-      const best=pages.find(page=>page.thumbnail?.source&&page.title.toLowerCase().includes(title.toLowerCase()))||pages.find(page=>page.thumbnail?.source);
-      if(!best?.thumbnail?.source||!hero.isConnected)return;
-      const photo=document.createElement("img");
-      photo.className="dreamers-card-photo";
-      photo.alt=title+" player photo";
-      photo.loading="lazy";
-      photo.src=best.thumbnail.source;
-      photo.onerror=()=>{photo.remove();hero.classList.add("dreamers-art-fallback")};
-      hero.appendChild(photo);
-      hero.classList.add("has-photo");
+      const clean=title.toLowerCase().normalize("NFD").replace(/[\\u0300-\\u036f]/g,"");
+      const best=pages.find(page=>page.thumbnail?.source&&page.title.toLowerCase().normalize("NFD").replace(/[\\u0300-\\u036f]/g,"").includes(clean))
+       ||pages.find(page=>page.thumbnail?.source&&/football|soccer|player/i.test(page.title))
+       ||pages.find(page=>page.thumbnail?.source);
+      if(best?.thumbnail?.source)tryPhoto(best.thumbnail.source);
      }).catch(()=>{});
+   };
+   grid.querySelectorAll(".dreamers-ultimate-card").forEach(card=>{
+    const title=card.querySelector(".dreamers-card-name h3")?.textContent?.trim();
+    const hero=card.querySelector(".dreamers-card-hero");
+    const img=hero?.querySelector(".dreamers-card-photo");
+    if(!title||!hero)return;
+    if(img){
+     if(img.complete&&img.naturalWidth>0)return;
+     img.addEventListener("error",()=>{
+      img.remove();
+      hero.classList.remove("has-photo");
+      lookupDreamersPhoto(title,hero);
+     },{once:true});
+     // If the original photo already failed before the listener was attached.
+     if(img.complete&&img.naturalWidth===0){img.remove();lookupDreamersPhoto(title,hero);}
+    }else lookupDreamersPhoto(title,hero);
    });
   };
   const filter=document.getElementById("playerFilter"); if(filter){["LB","RB","LWF","RWF","SS","RMF","LMF"].forEach(pos=>{if(!Array.from(filter.options).some(o=>o.value===pos)){const opt=document.createElement("option");opt.value=pos;opt.textContent=pos;filter.add(opt)}})}
